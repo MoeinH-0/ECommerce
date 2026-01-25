@@ -2,13 +2,13 @@
 
 public class ProductCategoryViewModel
 {
-    public required long Id { get; set; }
-    
-    public required string Name { get; set; }
-    
-    public required string Picture { get; set; }
-    
-    public required string CreationDate { get;  set; }
-    
-    public required long ProductsCount { get; set; }
+    public long Id { get; set; }
+
+    public string Name { get; set; }
+
+    public string Picture { get; set; }
+
+    public string CreationDate { get; set; }
+
+    public long ProductsCount { get; set; }
 }

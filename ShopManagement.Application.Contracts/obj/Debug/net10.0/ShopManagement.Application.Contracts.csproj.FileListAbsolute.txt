@@ -1,0 +1,17 @@
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\ShopManagement.Application.Contracts.deps.json
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\ShopManagement.Application.Contracts.runtimeconfig.json
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\ShopManagement.Application.Contracts.dll
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\ShopManagement.Application.Contracts.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\0_Framework.dll
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\0_Framework.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.csproj.AssemblyReference.cache
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.AssemblyInfoInputs.cache
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.AssemblyInfo.cs
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.csproj.CoreCompileInputs.cache
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopMana.6F35FA60.Up2Date
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.dll
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\refint\ShopManagement.Application.Contracts.dll
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.genruntimeconfig.cache
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ref\ShopManagement.Application.Contracts.dll

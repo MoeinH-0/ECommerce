@@ -24,7 +24,7 @@ public class RepositoryBase<TKey, T> : IRepository<TKey, T> where T : class
         return _context.Set<T>().ToList();
     }
 
-    public void Creat(T entity)
+    public void Create(T entity)
     {
         _context.Add(entity);
     }

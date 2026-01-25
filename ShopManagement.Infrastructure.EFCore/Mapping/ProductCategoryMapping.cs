@@ -10,7 +10,7 @@ public class ProductCategoryMapping : IEntityTypeConfiguration<ProductCategory>
     {
         builder.ToTable("ProductCategories");
         builder.HasKey(x => x.Id);
-        
+
         builder.Property(x => x.Name).HasMaxLength(255).IsRequired();
         builder.Property(x => x.Description).HasMaxLength(550);
         builder.Property(x => x.Picture).HasMaxLength(1000);

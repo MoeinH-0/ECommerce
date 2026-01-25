@@ -13,7 +13,7 @@ public class ProductCategoryApplication : IProductCategoryApplication
         _repository = repository;
     }
 
-    public OperationResult Creat(CreatProductCategory command)
+    public OperationResult Create(CreateProductCategory command)
     {
         var operationResult = new OperationResult();
         if (_repository.Exists(x => x.Name == command.Name))
@@ -24,7 +24,7 @@ public class ProductCategoryApplication : IProductCategoryApplication
             command.PictureAlt, command.PictureTitle, command.Keywords,
             command.MetaDescription, command.Slug.Slugify());
 
-        _repository.Creat(productCategory);
+        _repository.Create(productCategory);
 
         _repository.SaveChanges();
         return operationResult.Succeeded();

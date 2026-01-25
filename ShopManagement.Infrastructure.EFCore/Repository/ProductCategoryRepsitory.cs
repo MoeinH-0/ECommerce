@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using _0_Framework.Infrastructure;
+﻿using _0_Framework.Infrastructure;
 using ShopManagement.Application.Contracts.ProductCategory;
 using ShopManagement.Domain.ProductCategoryAgg;
 
@@ -13,6 +12,7 @@ public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, 
     {
         _context = context;
     }
+
     public EditProductCategory? GetDetails(long id)
     {
         return _context.ProductCategories.Select(x => new EditProductCategory
@@ -26,22 +26,24 @@ public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, 
             MetaDescription = x.MetaDescription,
             Slug = x.Slug,
             Picture = x.Picture,
-            CreationDate = x.CreateDate.ToString("yyyy-MM-dd"),
+            CreationDate = x.CreateDate.ToString("yyyy-MM-dd")
         }).FirstOrDefault(p => p.Id == id);
     }
 
     public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
     {
-        return _context.ProductCategories.Select(x => new ProductCategoryViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Picture = x.Picture,
-                CreationDate = x.CreateDate.ToString("yyyy-MM-dd"),
-                ProductsCount = _context.ProductCategories.Count()
-            }).Where(x => !string.IsNullOrWhiteSpace(x.Name)
-                          && x.Name.Contains(searchModel.Name))
-            .OrderByDescending(x => x.Id)
-            .ToList();
+        var query = _context.ProductCategories.Select(x => new ProductCategoryViewModel
+        {
+            Id = x.Id,
+            Picture = x.Picture,
+            Name = x.Name,
+            CreationDate = x.CreateDate.ToString("yyyy-MM-dd"),
+            ProductsCount = _context.ProductCategories.Count()
+        });
+
+        if (!string.IsNullOrWhiteSpace(searchModel.Name))
+            query = query.Where(x => x.Name.Contains(searchModel.Name));
+
+        return query.OrderByDescending(x => x.Id).ToList();
     }
 }

@@ -3,5 +3,5 @@
 public abstract class EntityBase
 {
     public long Id { get; set; }
-    public DateTime CreateDate { get; set; } = DateTime.Now;
+    public DateTime CreateDate { get; set; } = DateTime.UtcNow;
 }
