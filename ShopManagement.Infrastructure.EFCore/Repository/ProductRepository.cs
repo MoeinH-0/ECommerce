@@ -23,7 +23,7 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
             Id = x.Id,
             Name = x.Name,
             Code = x.Code,
-            Price = x.Price,
+            UnitPrice = x.UnitPrice,
             Description = x.Description,
             PictureAlt = x.PictureAlt,
             PictureTitle = x.PictureTitle,
@@ -48,7 +48,7 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
                 Id = x.Id,
                 Name = x.Name,
                 Code = x.Code,
-                Price = x.Price,
+                UnitPrice = x.UnitPrice,
                 Picture = x.Picture,
                 CreationDate = x.CreationDate.ToString("yyyy-MM-dd"),
                 Category = x.Category.Name,
@@ -63,7 +63,7 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
             query = query.Where(x => x.Code.Contains(searchModel.Code));
 
         if (searchModel.CategoryId != 0)
-            query = query.Where(x => x.Category.Contains(searchModel.Category));
+            query = query.Where(x => x.CategoryId == searchModel.CategoryId);
         
 
         return query.OrderByDescending(x => x.Id).ToList();

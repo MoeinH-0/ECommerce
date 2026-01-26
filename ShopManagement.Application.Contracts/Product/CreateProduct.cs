@@ -13,7 +13,7 @@ public class CreateProduct
     public string Code { get; set; }
 
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
-    public double Price { get; set; }
+    public double UnitPrice { get; set; }
 
     [Range(1, 1000, ErrorMessage = ValidationMessages.IsRequired)]
     public long CategoryId { get; set; }

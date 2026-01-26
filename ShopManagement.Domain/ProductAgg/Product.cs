@@ -10,7 +10,7 @@ public class Product : EntityBase
     public string Name { get; private set; }
     public string Code { get; private set; }
     public bool IsInStock { get; private set; }
-    public double Price { get; private set; }
+    public double UnitPrice { get; private set; }
     public int Discount { get; private set; }
     public string ShortDescription { get; private set; }
     public string Description { get; private set; }
@@ -26,14 +26,14 @@ public class Product : EntityBase
     public List<ProductPicture> ProductPictures { get; private set; }
 
 
-    public Product(string name, double price, string? description, string? picture,
+    public Product(string name, double unitPrice, string? description, string? picture,
         string? pictureAlt, string? pictureTitle, string keywords, string metaDescription,
         string slug, string code, string shortDescription, long categoryId)
     {
         Name = name;
         Code = code;
         IsInStock = true;
-        Price = price;
+        UnitPrice = unitPrice;
         Discount = 0;
         ShortDescription = shortDescription;
         Description = description;
@@ -47,13 +47,13 @@ public class Product : EntityBase
         Slug = slug;
     }
 
-    public void Edit(string name, double price, string? description, string? picture,
+    public void Edit(string name, double unitPrice, string? description, string? picture,
         string? pictureAlt, string? pictureTitle, string keywords, string metaDescription,
         string slug, string code, string shortDescription, long categoryId)
     {
         Name = name;
         Code = code;
-        Price = price;
+        UnitPrice = UnitPrice;
         ShortDescription = shortDescription;
         Description = description;
         CategoryId = categoryId;

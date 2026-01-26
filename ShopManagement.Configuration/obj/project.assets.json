@@ -1065,6 +1065,19 @@
           }
         }
       },
+      "01_ShopQuery/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "ShopManagement.Infrastructure.EFCore": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/01_ShopQuery.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/01_ShopQuery.dll": {}
+        }
+      },
       "0_Framework/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -3463,6 +3476,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "01_ShopQuery/1.0.0": {
+      "type": "project",
+      "path": "../01_ShopQuery/01_ShopQuery.csproj",
+      "msbuildProject": "../01_ShopQuery/01_ShopQuery.csproj"
+    },
     "0_Framework/1.0.0": {
       "type": "project",
       "path": "../0_Framework/0_Framework.csproj",
@@ -3491,6 +3509,7 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "01_ShopQuery >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 10.0.2",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 10.0.2",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 10.0.0",
@@ -3533,6 +3552,9 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
+            "C:\\Projects\\C#\\ShopProject\\01_ShopQuery\\01_ShopQuery.csproj": {
+              "projectPath": "C:\\Projects\\C#\\ShopProject\\01_ShopQuery\\01_ShopQuery.csproj"
+            },
             "C:\\Projects\\C#\\ShopProject\\ShopManagement.Application.Contracts\\ShopManagement.Application.Contracts.csproj": {
               "projectPath": "C:\\Projects\\C#\\ShopProject\\ShopManagement.Application.Contracts\\ShopManagement.Application.Contracts.csproj"
             },
@@ -3872,5 +3894,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    }
+  ]
 }

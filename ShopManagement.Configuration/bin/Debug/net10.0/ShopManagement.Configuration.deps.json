@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v10.0": {
       "ShopManagement.Configuration/1.0.0": {
         "dependencies": {
+          "01_ShopQuery": "1.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "10.0.2",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0",
@@ -777,6 +778,17 @@
           }
         }
       },
+      "01_ShopQuery/1.0.0": {
+        "dependencies": {
+          "ShopManagement.Infrastructure.EFCore": "1.0.0"
+        },
+        "runtime": {
+          "01_ShopQuery.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "0_Framework/1.0.0": {
         "dependencies": {
           "EntityFramework": "6.5.1",
@@ -1169,6 +1181,11 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "01_ShopQuery/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "0_Framework/1.0.0": {
       "type": "project",

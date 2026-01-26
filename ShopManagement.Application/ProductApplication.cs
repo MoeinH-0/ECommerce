@@ -20,7 +20,7 @@ public class ProductApplication : IProductApplication
             return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
         var product = new Product
-        (command.Name, command.Price, command.Description, command.Picture,
+        (command.Name, command.UnitPrice, command.Description, command.Picture,
             command.PictureAlt, command.PictureTitle, command.Keywords,
             command.MetaDescription, command.Slug.Slugify(), command.Code,
             command.ShortDescription, command.CategoryId);
@@ -41,7 +41,7 @@ public class ProductApplication : IProductApplication
         if (product == null)
             return operationResult.Failed(ApplicationMessages.RecordNotFound);
 
-        product.Edit(command.Name, command.Price, command.Description, command.Picture,
+        product.Edit(command.Name, command.UnitPrice, command.Description, command.Picture,
             command.PictureAlt, command.PictureTitle, command.Keywords,
             command.MetaDescription, command.Slug.Slugify(), command.Code,
             command.ShortDescription, command.CategoryId);

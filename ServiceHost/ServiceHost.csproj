@@ -557,30 +557,40 @@
         <_ContentIncludedByDefault Remove="NewDirectory1\Pages\Shared\_ValidationScriptsPartial.cshtml"/>
         <_ContentIncludedByDefault Remove="NewDirectory1\Pages\_ViewImports.cshtml"/>
         <_ContentIncludedByDefault Remove="NewDirectory1\Pages\_ViewStart.cshtml"/>
-        <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
-        <_ContentIncludedByDefault Remove="Pages\Index.cshtml" />
-        <_ContentIncludedByDefault Remove="Pages\Privacy.cshtml" />
-        <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml" />
-        <_ContentIncludedByDefault Remove="Pages\Shared\_ValidationScriptsPartial.cshtml" />
-        <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml" />
-        <_ContentIncludedByDefault Remove="Pages\_ViewStart.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Error.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Privacy.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\_ValidationScriptsPartial.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\_ViewStart.cshtml"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="wwwroot\.idea\.gitignore" />
-      <Content Include="wwwroot\.idea\copilot.data.migration.agent.xml" />
-      <Content Include="wwwroot\.idea\encodings.xml" />
-      <Content Include="wwwroot\.idea\indexLayout.xml" />
-      <Content Include="wwwroot\.idea\projectSettingsUpdater.xml" />
-      <Content Include="wwwroot\.idea\vcs.xml" />
-      <Content Include="wwwroot\.idea\workspace.xml" />
+        <UpToDateCheckInput Remove="Pages\Error.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\Index.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\Privacy.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\Shared\_Layout.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\Shared\_ValidationScriptsPartial.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\_ViewImports.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\_ViewStart.cshtml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="wwwroot\.idea\.gitignore"/>
+        <Content Include="wwwroot\.idea\copilot.data.migration.agent.xml"/>
+        <Content Include="wwwroot\.idea\encodings.xml"/>
+        <Content Include="wwwroot\.idea\indexLayout.xml"/>
+        <Content Include="wwwroot\.idea\projectSettingsUpdater.xml"/>
+        <Content Include="wwwroot\.idea\vcs.xml"/>
+        <Content Include="wwwroot\.idea\workspace.xml"/>
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,4 @@
 using ShopManagement.Configuration;
-using ShopManagement.Domain.ProductCategoryAgg;
-using ShopManagement.Infrastructure.EFCore.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
