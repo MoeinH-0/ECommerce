@@ -1,24 +1,23 @@
-/**
- * Theme: Moltran Admin Template
- * Author: Coderthemes
- * Form Validator
- */
 
-!function ($) {
+/**
+* Theme: Moltran Admin Template
+* Author: Coderthemes
+* Form Validator
+*/
+
+!function($) {
     "use strict";
 
-    var FormValidator = function () {
+    var FormValidator = function() {
         this.$commentForm = $("#commentForm"), //this could be any form, for example we are specifying the comment form
-            this.$signupForm = $("#signupForm");
+        this.$signupForm = $("#signupForm");
     };
 
     //init
-    FormValidator.prototype.init = function () {
+    FormValidator.prototype.init = function() {
         //validator plugin
         $.validator.setDefaults({
-            submitHandler: function () {
-                alert("submitted!");
-            }
+            submitHandler: function() { alert("submitted!"); }
         });
 
         // validate the comment form when it is submitted
@@ -74,10 +73,10 @@
         });
 
         // propose username by combining first- and lastname
-        $("#username").focus(function () {
+        $("#username").focus(function() {
             var firstname = $("#firstname").val();
             var lastname = $("#lastname").val();
-            if (firstname && lastname && !this.value) {
+            if(firstname && lastname && !this.value) {
                 this.value = firstname + "." + lastname;
             }
         });
@@ -89,19 +88,19 @@
         var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
         var topicInputs = topics.find("input").attr("disabled", !inital);
         // show when newsletter is checked
-        newsletter.click(function () {
+        newsletter.click(function() {
             topics[this.checked ? "removeClass" : "addClass"]("gray");
             topicInputs.attr("disabled", !this.checked);
         });
 
     },
-        //init
-        $.FormValidator = new FormValidator, $.FormValidator.Constructor = FormValidator
+    //init
+    $.FormValidator = new FormValidator, $.FormValidator.Constructor = FormValidator
 }(window.jQuery),
 
 
 //initializing 
-    function ($) {
-        "use strict";
-        $.FormValidator.init()
-    }(window.jQuery);
+function($) {
+    "use strict";
+    $.FormValidator.init()
+}(window.jQuery);

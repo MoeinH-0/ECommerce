@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ServiceHost.Areas.Administration.Pages;
-
-public class IndexModel : PageModel
+namespace ServiceHost.Areas.Administration.Pages
 {
-    public void OnGet()
+    public class IndexModel : PageModel
     {
+        public void OnGet()
+        {
+        }
     }
 }

@@ -20,8 +20,7 @@
                     <input type="text" class="form-control" asp-for="Name">
                     <span asp-validation-for="Name" class="error"></span>
                 </div>
-            </div>
-            <div class="col-md-6">
+            </div><div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="Slug" class="control-label">اسلاگ</label>
                     <input type="text" class="form-control" asp-for="Slug">
@@ -58,8 +57,7 @@
             <div class="col-md-12">
                 <div class="form-group no-margin">
                     <label asp-for="Description" class="control-label">توضیحات</label>
-                    <textarea class="form-control autogrow" asp-for="Description"
-                              onchange="fillField('Description', 'MetaDescription')"
+                    <textarea class="form-control autogrow" asp-for="Description" onchange="fillField('Description', 'MetaDescription')"
                               style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
                     <span asp-validation-for="Description" class="error"></span>
                 </div>
@@ -84,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" asp-for="Id" value="@Model.Id"/>
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>

@@ -26,18 +26,19 @@ public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, 
             MetaDescription = x.MetaDescription,
             Slug = x.Slug,
             Picture = x.Picture,
-            CreationDate = x.CreateDate.ToString("yyyy-MM-dd")
+            CreationDate = x.CreationDate.ToString("yyyy-MM-dd")
         }).FirstOrDefault(p => p.Id == id);
     }
 
     public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
     {
-        var query = _context.ProductCategories.Select(x => new ProductCategoryViewModel
+        var query = _context.ProductCategories.
+            Select(x => new ProductCategoryViewModel
         {
             Id = x.Id,
             Picture = x.Picture,
             Name = x.Name,
-            CreationDate = x.CreateDate.ToString("yyyy-MM-dd"),
+            CreationDate = x.CreationDate.ToString("yyyy-MM-dd"),
             ProductsCount = _context.ProductCategories.Count()
         });
 
@@ -45,5 +46,15 @@ public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, 
             query = query.Where(x => x.Name.Contains(searchModel.Name));
 
         return query.OrderByDescending(x => x.Id).ToList();
+    }
+    
+    public List<ProductCategoryViewModel> GetProductCategories()
+    {
+        return _context.ProductCategories
+            .Select(x => new ProductCategoryViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToList();
     }
 }

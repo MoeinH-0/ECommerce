@@ -17,7 +17,7 @@ public class ProductCategoryApplication : IProductCategoryApplication
     {
         var operationResult = new OperationResult();
         if (_repository.Exists(x => x.Name == command.Name))
-            return operationResult.Failed("امکان ثبت رکورد تکراری وجود ندارد");
+            return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
         var productCategory = new ProductCategory
         (command.Name, command.Description, command.Picture,
@@ -34,11 +34,11 @@ public class ProductCategoryApplication : IProductCategoryApplication
     {
         var operationResult = new OperationResult();
         if (_repository.Exists(x => x.Name == command.Name && x.Id != command.Id))
-            return operationResult.Failed("امکان ثبت رکورد تکراری وجود ندارد");
+            return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
         var productCategory = _repository.Get(command.Id);
         if (productCategory == null)
-            return operationResult.Failed("رکورد مورد نظر یافت نشد");
+            return operationResult.Failed(ApplicationMessages.RecordNotFound);
 
         productCategory.Edit(command.Name, command.Description, command.Picture,
             command.PictureAlt, command.PictureTitle, command.Keywords,
@@ -50,11 +50,16 @@ public class ProductCategoryApplication : IProductCategoryApplication
 
     public EditProductCategory GetDetails(long id)
     {
-        return _repository.GetDetails(id);
+        return _repository.GetDetails(id)!;
     }
 
     public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
     {
         return _repository.Search(searchModel);
+    }
+
+    public List<ProductCategoryViewModel> GetProductCategories()
+    {
+        return _repository.GetProductCategories();
     }
 }

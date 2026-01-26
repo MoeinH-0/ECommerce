@@ -1,45 +1,48 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManagement.Application.Contracts.ProductCategory;
+using System.Collections.Generic;
 
-namespace ServiceHost.Areas.Administration.Pages.Shop.ProductCategories;
-
-public class IndexModel : PageModel
+namespace ServiceHost.Areas.Administration.Pages.Shop.ProductCategories
 {
-    private readonly IProductCategoryApplication _productCategoryApplication;
-    public List<ProductCategoryViewModel> ProductCategories;
-    public ProductCategorySearchModel SearchModel;
-
-    public IndexModel(IProductCategoryApplication productCategoryApplication)
+    public class IndexModel : PageModel
     {
-        _productCategoryApplication = productCategoryApplication;
-    }
+        public ProductCategorySearchModel SearchModel;
+        public List<ProductCategoryViewModel> ProductCategories;
 
-    public void OnGet(ProductCategorySearchModel searchModel)
-    {
-        ProductCategories = _productCategoryApplication.Search(searchModel);
-    }
+        private readonly IProductCategoryApplication _productCategoryApplication;
 
-    public IActionResult OnGetCreate()
-    {
-        return Partial("./Create", new CreateProductCategory());
-    }
+        public IndexModel(IProductCategoryApplication productCategoryApplication)
+        {
+            _productCategoryApplication = productCategoryApplication;
+        }
 
-    public JsonResult OnPostCreate(CreateProductCategory command)
-    {
-        var result = _productCategoryApplication.Create(command);
-        return new JsonResult(result);
-    }
+        public void OnGet(ProductCategorySearchModel searchModel)
+        {
+            ProductCategories = _productCategoryApplication.Search(searchModel);
+        }
 
-    public IActionResult OnGetEdit(long id)
-    {
-        var productCategory = _productCategoryApplication.GetDetails(id);
-        return Partial("Edit", productCategory);
-    }
+        public IActionResult OnGetCreate()
+        {
+            return Partial("./Create", new CreateProductCategory());
+        }
 
-    public JsonResult OnPostEdit(EditProductCategory command)
-    {
-        var result = _productCategoryApplication.Edit(command);
-        return new JsonResult(result);
+        public JsonResult OnPostCreate(CreateProductCategory command)
+        {
+            var result = _productCategoryApplication.Create(command);
+            return new JsonResult(result);
+        }
+
+        public IActionResult OnGetEdit(long id)
+        {
+            var productCategory = _productCategoryApplication.GetDetails(id);
+            return Partial("Edit", productCategory);
+        }
+
+        public JsonResult OnPostEdit(EditProductCategory command)
+        {
+            var result = _productCategoryApplication.Edit(command);
+            return new JsonResult(result);
+        }
     }
 }
