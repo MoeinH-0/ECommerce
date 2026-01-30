@@ -1,5 +1,4 @@
 ﻿using _0_Framework.Application;
-using Microsoft.Extensions.Logging;
 
 namespace ShopManagement.Application.Contracts.Product;
 

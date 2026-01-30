@@ -19,3 +19,4 @@ C:\Projects\C#\ShopProject\ShopManagement.Application\obj\Debug\net10.0\refint\S
 C:\Projects\C#\ShopProject\ShopManagement.Application\obj\Debug\net10.0\ShopManagement.Application.pdb
 C:\Projects\C#\ShopProject\ShopManagement.Application\obj\Debug\net10.0\ShopManagement.Application.genruntimeconfig.cache
 C:\Projects\C#\ShopProject\ShopManagement.Application\obj\Debug\net10.0\ref\ShopManagement.Application.dll
+C:\Projects\C#\ShopProject\ShopManagement.Application\obj\Debug\net10.0\ShopManagement.Application.sourcelink.json

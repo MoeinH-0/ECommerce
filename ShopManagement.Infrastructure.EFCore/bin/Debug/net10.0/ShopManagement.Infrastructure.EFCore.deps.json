@@ -798,6 +798,7 @@
       "ShopManagement.Domain/1.0.0": {
         "dependencies": {
           "0_Framework": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "10.0.2",
           "ShopManagement.Application.Contracts": "1.0.0"
         },
         "runtime": {

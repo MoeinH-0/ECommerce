@@ -1,9 +1,8 @@
-﻿using _0_Framework.Infrastructure;
+﻿using _0_Framework.Application;
+using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contracts.Product;
-using ShopManagement.Application.Contracts.ProductCategory;
 using ShopManagement.Domain.ProductAgg;
-using ShopManagement.Domain.ProductCategoryAgg;
 
 namespace ShopManagement.Infrastructure.EFCore.Repository;
 
@@ -39,8 +38,8 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
 
     public List<ProductViewModel> Search(ProductSearchModel searchModel)
     {
-        List<Product> products = _context.Products.Include(x => x.Category).ToList();
-        
+        var products = _context.Products.Include(x => x.Category).ToList();
+
         var query = _context.Products
             .Include(x => x.Category)
             .Select(x => new ProductViewModel
@@ -50,7 +49,7 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
                 Code = x.Code,
                 UnitPrice = x.UnitPrice,
                 Picture = x.Picture,
-                CreationDate = x.CreationDate.ToString("yyyy-MM-dd"),
+                CreationDate = x.CreationDate.ToFarsi(),
                 Category = x.Category.Name,
                 IsInStock = x.IsInStock,
                 CategoryId = x.CategoryId
@@ -64,7 +63,7 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
 
         if (searchModel.CategoryId != 0)
             query = query.Where(x => x.CategoryId == searchModel.CategoryId);
-        
+
 
         return query.OrderByDescending(x => x.Id).ToList();
     }

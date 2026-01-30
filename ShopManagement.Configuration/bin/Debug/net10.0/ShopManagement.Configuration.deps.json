@@ -9,6 +9,7 @@
       "ShopManagement.Configuration/1.0.0": {
         "dependencies": {
           "01_ShopQuery": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "10.0.2",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0",
@@ -827,6 +828,7 @@
       "ShopManagement.Domain/1.0.0": {
         "dependencies": {
           "0_Framework": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "10.0.2",
           "ShopManagement.Application.Contracts": "1.0.0"
         },
         "runtime": {

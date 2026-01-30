@@ -24,8 +24,7 @@ public class IndexModel : PageModel
 
     public void OnGet(ProductSearchModel searchModel)
     {
-        ProductCategories = new SelectList
-            (_productCategoryApplication.GetProductCategories(), "Id", "Name");
+        ProductCategories = new SelectList(_productCategoryApplication.GetProductCategories(), "Id", "Name");
         Products = _productApplication.Search(searchModel);
     }
 

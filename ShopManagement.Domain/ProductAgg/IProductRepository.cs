@@ -1,6 +1,5 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Application.Contracts.Product;
-using ShopManagement.Application.Contracts.ProductCategory;
 
 namespace ShopManagement.Domain.ProductAgg;
 

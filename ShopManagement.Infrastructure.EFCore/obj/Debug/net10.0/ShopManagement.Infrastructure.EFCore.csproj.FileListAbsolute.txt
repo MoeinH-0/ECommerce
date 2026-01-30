@@ -19,3 +19,4 @@ C:\Projects\C#\ShopProject\ShopManagement.Infrastructure.EFCore\obj\Debug\net10.
 C:\Projects\C#\ShopProject\ShopManagement.Infrastructure.EFCore\obj\Debug\net10.0\ShopManagement.Infrastructure.EFCore.pdb
 C:\Projects\C#\ShopProject\ShopManagement.Infrastructure.EFCore\obj\Debug\net10.0\ShopManagement.Infrastructure.EFCore.genruntimeconfig.cache
 C:\Projects\C#\ShopProject\ShopManagement.Infrastructure.EFCore\obj\Debug\net10.0\ref\ShopManagement.Infrastructure.EFCore.dll
+C:\Projects\C#\ShopProject\ShopManagement.Infrastructure.EFCore\obj\Debug\net10.0\ShopManagement.Infrastructure.EFCore.sourcelink.json

@@ -1,5 +1,5 @@
 ﻿@page
-@model ServiceHost.Areas.Administration.Pages.Shop.Products.IndexModel
+@model IndexModel
 @{
 }
 
@@ -40,7 +40,7 @@
                             <option value="0">گروه محصولی ...</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-success waves-effect waves-light m-l-10" formnovalidate>جستجو</button>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
                     <a class="btn btn-primary waves-effect waves-light m-l-10" asp-page="./Index">مشاهده همه</a>
                 </form>
             </div>
@@ -52,7 +52,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">لیست محصولات</h3>
+                <h3 class="panel-title">لیست محصولات (@Model.Products.Count)</h3>
             </div>
             <div class="panel-body">
                 <div class="row">

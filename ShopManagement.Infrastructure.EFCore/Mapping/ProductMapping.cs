@@ -22,7 +22,7 @@ public class ProductMapping : EntityTypeConfiguration<Product>
         builder.HasOne(x => x.Category)
             .WithMany(x => x.Products)
             .HasForeignKey(x => x.CategoryId);
-        
+
         builder.HasMany(x => x.ProductPictures)
             .WithOne(x => x.Product)
             .HasForeignKey(x => x.ProductId);

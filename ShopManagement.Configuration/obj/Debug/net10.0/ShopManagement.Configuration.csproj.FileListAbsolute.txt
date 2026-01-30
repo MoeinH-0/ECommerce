@@ -25,3 +25,4 @@ C:\Projects\C#\ShopProject\ShopManagement.Configuration\obj\Debug\net10.0\ShopMa
 C:\Projects\C#\ShopProject\ShopManagement.Configuration\obj\Debug\net10.0\ref\ShopManagement.Configuration.dll
 C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\01_ShopQuery.dll
 C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\01_ShopQuery.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\obj\Debug\net10.0\ShopManagement.Configuration.sourcelink.json

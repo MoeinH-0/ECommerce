@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\DiscountManagement.Application.Contracts\DiscountManagement.Application.Contracts.csproj"/>
+        <ProjectReference Include="..\DiscountManagement.Configuration\DiscountManagement.Configuration.csproj" />
         <ProjectReference Include="..\ShopManagement.Configuration\ShopManagement.Configuration.csproj"/>
     </ItemGroup>
 
@@ -564,6 +566,20 @@
         <_ContentIncludedByDefault Remove="Pages\Shared\_ValidationScriptsPartial.cshtml"/>
         <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml"/>
         <_ContentIncludedByDefault Remove="Pages\_ViewStart.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\Slide\Default.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shared\_Menu.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductCategories\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductCategories\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductCategories\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductPictures\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductPictures\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductPictures\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Products\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Products\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Products\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Slides\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Slides\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Slides\Index.cshtml"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -581,6 +597,11 @@
         <UpToDateCheckInput Remove="Pages\Shared\_ValidationScriptsPartial.cshtml"/>
         <UpToDateCheckInput Remove="Pages\_ViewImports.cshtml"/>
         <UpToDateCheckInput Remove="Pages\_ViewStart.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\Error.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\Index.cshtml"/>
+        <UpToDateCheckInput Remove="Pages\Privacy.cshtml"/>
+        <UpToDateCheckInput Remove="Areas\Administration\Pages\Index.cshtml"/>
+        <UpToDateCheckInput Remove="Areas\Administration\Pages\Shared\_AdminLayout.cshtml"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -591,6 +612,10 @@
         <Content Include="wwwroot\.idea\projectSettingsUpdater.xml"/>
         <Content Include="wwwroot\.idea\vcs.xml"/>
         <Content Include="wwwroot\.idea\workspace.xml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Areas\Administration\Pages\Discounts\"/>
     </ItemGroup>
 
 </Project>

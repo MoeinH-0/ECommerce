@@ -69,3 +69,4 @@ C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.
 C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\System.Security.Cryptography.Pkcs.dll
 C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\bin\Debug\net10.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Projects\C#\ShopProject\ShopManagement.Application.Contracts\obj\Debug\net10.0\ShopManagement.Application.Contracts.sourcelink.json
