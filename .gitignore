@@ -1,0 +1,71 @@
+﻿############################
+# Build results
+############################
+**/bin/
+**/obj/
+**/out/
+
+############################
+# ASP.NET / wwwroot (generated assets)
+############################
+**/wwwroot/**
+!**/wwwroot/favicon.ico
+
+############################
+# Frontend package managers
+############################
+**/node_modules/
+**/dist/
+**/build/
+
+############################
+# LibMan
+############################
+**/libman.json
+**/wwwroot/lib/
+
+############################
+# IDEs
+############################
+.vs/
+**/.vs/
+.idea/
+**/.idea/
+.vscode/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+
+############################
+# OS files
+############################
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+############################
+# Logs & temp
+############################
+*.log
+*.tmp
+*.temp
+
+############################
+# Rider / ReSharper
+############################
+**/_ReSharper*/
+**/*.DotSettings.user
+
+############################
+# EF Core
+############################
+**/Migrations/*.Designer.cs
+**/Migrations/*.resx
+
+############################
+# Secrets
+############################
+**/appsettings.*.json
+!**/appsettings.json
+!**/appsettings.Development.json
