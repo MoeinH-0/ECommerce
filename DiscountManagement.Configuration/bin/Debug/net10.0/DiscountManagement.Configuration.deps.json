@@ -452,6 +452,7 @@
           "Microsoft.EntityFrameworkCore": "10.0.2",
           "Microsoft.EntityFrameworkCore.Abstractions": "10.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "10.0.2",
+          "Npgsql": "10.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0",
           "ShopManagement.Domain": "1.0.0"
         },

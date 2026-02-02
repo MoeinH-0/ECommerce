@@ -37,21 +37,12 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("Count")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("Discount")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsInStock")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Keywords")
                         .IsRequired()
@@ -84,9 +75,6 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<double>("UnitPrice")
-                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 

@@ -18,5 +18,6 @@ public class DefineCustomerDiscount
 
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
     public string Reason { get; set; }
+
     public List<ProductViewModel> Products { get; set; }
 }

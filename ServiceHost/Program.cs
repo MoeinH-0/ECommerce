@@ -1,13 +1,18 @@
 using DiscountManagement.Configuration;
+using InventoryManagement.Infrastructure.Configuration;
 using ShopManagement.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+
 ShopManagementBootstrapper.Configuration
     (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
 
 DiscountManagementBootstrapper.Configure
+    (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
+
+InventoryManagementBootstrapper.Configure
     (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
 
 var app = builder.Build();

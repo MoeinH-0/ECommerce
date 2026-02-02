@@ -1,71 +1,39 @@
-﻿############################
-# Build results
-############################
-**/bin/
-**/obj/
-**/out/
-
-############################
-# ASP.NET / wwwroot (generated assets)
-############################
-**/wwwroot/**
-!**/wwwroot/favicon.ico
-
-############################
-# Frontend package managers
-############################
-**/node_modules/
-**/dist/
-**/build/
-
-############################
-# LibMan
-############################
-**/libman.json
-**/wwwroot/lib/
-
-############################
-# IDEs
-############################
+﻿# ========================
+# .NET / Visual Studio
+# ========================
+bin/
+obj/
 .vs/
-**/.vs/
-.idea/
-**/.idea/
 .vscode/
-**/*.user
-**/*.suo
-**/*.userosscache
-**/*.sln.docstates
-
-############################
-# OS files
-############################
-Thumbs.db
-Desktop.ini
-.DS_Store
-
-############################
-# Logs & temp
-############################
+*.user
+*.suo
+*.cache
 *.log
-*.tmp
-*.temp
 
-############################
-# Rider / ReSharper
-############################
-**/_ReSharper*/
-**/*.DotSettings.user
+# ========================
+# ASP.NET Core
+# ========================
+appsettings.Development.json
+appsettings.Local.json
 
-############################
-# EF Core
-############################
-**/Migrations/*.Designer.cs
-**/Migrations/*.resx
+# ========================
+# wwwroot (ignore content, keep folder)
+# ========================
+wwwroot/**
 
-############################
-# Secrets
-############################
-**/appsettings.*.json
-!**/appsettings.json
-!**/appsettings.Development.json
+# allow empty folder tracking (optional)
+!wwwroot/
+!wwwroot/.gitkeep
+
+# ========================
+# Node / Frontend (if any)
+# ========================
+node_modules/
+dist/
+build/
+
+# ========================
+# OS files
+# ========================
+Thumbs.db
+.DS_Store

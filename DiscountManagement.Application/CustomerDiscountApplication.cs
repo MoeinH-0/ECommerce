@@ -22,7 +22,7 @@ public class CustomerDiscountApplication : ICustomerDiscountApplication
 
         var startDate = DateTime.SpecifyKind(command.StartDate.ToGeorgianDateTime(), DateTimeKind.Utc);
         var endDate = DateTime.SpecifyKind(command.EndDate.ToGeorgianDateTime(), DateTimeKind.Utc);
-        
+
         var customerDiscount = new CustomerDiscount(command.ProductId, command.DiscountRate,
             startDate, endDate, command.Reason);
         _customerDiscountRepository.Create(customerDiscount);
@@ -44,7 +44,7 @@ public class CustomerDiscountApplication : ICustomerDiscountApplication
 
         var startDate = DateTime.SpecifyKind(command.StartDate.ToGeorgianDateTime(), DateTimeKind.Utc);
         var endDate = DateTime.SpecifyKind(command.EndDate.ToGeorgianDateTime(), DateTimeKind.Utc);
-        
+
         customerDiscount.Edit(command.ProductId, command.DiscountRate, startDate, endDate, command.Reason);
         _customerDiscountRepository.SaveChanges();
         return operation.Succeeded();

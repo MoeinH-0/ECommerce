@@ -22,7 +22,6 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
             Id = x.Id,
             Name = x.Name,
             Code = x.Code,
-            UnitPrice = x.UnitPrice,
             Description = x.Description,
             PictureAlt = x.PictureAlt,
             PictureTitle = x.PictureTitle,
@@ -47,11 +46,9 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
                 Id = x.Id,
                 Name = x.Name,
                 Code = x.Code,
-                UnitPrice = x.UnitPrice,
                 Picture = x.Picture,
                 CreationDate = x.CreationDate.ToFarsi(),
                 Category = x.Category.Name,
-                IsInStock = x.IsInStock,
                 CategoryId = x.CategoryId
             });
 
