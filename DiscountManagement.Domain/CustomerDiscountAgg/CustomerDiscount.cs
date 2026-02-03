@@ -12,7 +12,6 @@ public class CustomerDiscount : EntityBase
         StartDate = startDate;
         EndDate = endDate;
         Reason = reason;
-        //IsActive = true;
     }
 
     public long ProductId { get; private set; }
@@ -20,8 +19,6 @@ public class CustomerDiscount : EntityBase
     public DateTime StartDate { get; private set; }
 
     public DateTime EndDate { get; private set; }
-
-    //public bool IsActive { get; set; }
     public string Reason { get; private set; }
 
     public void Edit(long productId, int discountRate, DateTime startDate,

@@ -1,4 +1,5 @@
-﻿using _01_ShopQuery.Contracts.ProductCategory;
+﻿using _01_ShopQuery.Contracts.Product;
+using _01_ShopQuery.Contracts.ProductCategory;
 using _01_ShopQuery.Contracts.Slide;
 using _01_ShopQuery.Query;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +36,7 @@ public class ShopManagementBootstrapper
 
         services.AddTransient<ISlideQuery, SlideQuery>();
         services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
-
+        services.AddTransient<IProductQuery, ProductQuery>();
 
         services.AddDbContext<ShopContext>(x => x.UseNpgsql(connectionString));
     }

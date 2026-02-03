@@ -28,11 +28,18 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
             Keywords = x.Keywords,
             MetaDescription = x.MetaDescription,
             Slug = x.Slug,
-            Picture = x.Picture,
+            // Picture = x.Picture,
             CreationDate = x.CreationDate.ToString("yyyy-MM-dd"),
             CategoryId = x.CategoryId,
             ShortDescription = x.ShortDescription
         }).FirstOrDefault(p => p.Id == id)!;
+    }
+
+    public Product GetProductWithCategory(long id)
+    {
+        return _context.Products
+            .Include(x => x.Category)
+            .FirstOrDefault(x => x.Id == id)!;
     }
 
     public List<ProductViewModel> Search(ProductSearchModel searchModel)

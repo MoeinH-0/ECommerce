@@ -7,10 +7,12 @@ namespace ShopManagement.Application;
 public class ProductCategoryApplication : IProductCategoryApplication
 {
     private readonly IProductCategoryRepository _repository;
+    private readonly IFileUploader _fileUploader;
 
-    public ProductCategoryApplication(IProductCategoryRepository repository)
+    public ProductCategoryApplication(IProductCategoryRepository repository, IFileUploader fileUploader)
     {
         _repository = repository;
+        _fileUploader = fileUploader;
     }
 
     public OperationResult Create(CreateProductCategory command)
@@ -19,8 +21,10 @@ public class ProductCategoryApplication : IProductCategoryApplication
         if (_repository.Exists(x => x.Name == command.Name))
             return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
+        var fileName = _fileUploader.Upload(command.Picture, command.Slug);
+        
         var productCategory = new ProductCategory
-        (command.Name, command.Description, command.Picture,
+        (command.Name, command.Description, fileName,
             command.PictureAlt, command.PictureTitle, command.Keywords,
             command.MetaDescription, command.Slug.Slugify());
 
@@ -40,7 +44,9 @@ public class ProductCategoryApplication : IProductCategoryApplication
         if (productCategory == null)
             return operationResult.Failed(ApplicationMessages.RecordNotFound);
 
-        productCategory.Edit(command.Name, command.Description, command.Picture,
+        var fileName = _fileUploader.Upload(command.Picture, command.Slug);
+
+        productCategory.Edit(command.Name, command.Description, fileName,
             command.PictureAlt, command.PictureTitle, command.Keywords,
             command.MetaDescription, command.Slug.Slugify());
 

@@ -25,7 +25,7 @@ public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, 
             Keywords = x.Keywords,
             MetaDescription = x.MetaDescription,
             Slug = x.Slug,
-            Picture = x.Picture,
+            // Picture = x.Picture,
             CreationDate = x.CreationDate.ToString("yyyy-MM-dd")
         }).FirstOrDefault(p => p.Id == id);
     }
@@ -45,6 +45,12 @@ public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, 
             query = query.Where(x => x.Name.Contains(searchModel.Name));
 
         return query.OrderByDescending(x => x.Id).ToList();
+    }
+
+    public string GetSlugById(long id)
+    {
+        return _context.ProductCategories
+            .Select(x => new {x.Id, x.Slug}).FirstOrDefault(x => x.Id == id)!.Slug;
     }
 
     public List<ProductCategoryViewModel> GetProductCategories()

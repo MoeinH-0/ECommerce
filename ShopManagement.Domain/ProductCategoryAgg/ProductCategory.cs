@@ -35,7 +35,8 @@ public class ProductCategory : EntityBase
     {
         Name = name;
         Description = description;
-        Picture = picture;
+        if (string.IsNullOrEmpty(picture))
+            Picture = picture;
         PictureAlt = pictureAlt;
         PictureTitle = pictureTitle;
         Keywords = keywords;

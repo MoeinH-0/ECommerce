@@ -26,3 +26,15 @@ C:\Projects\C#\ShopProject\ShopManagement.Configuration\obj\Debug\net10.0\ref\Sh
 C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\01_ShopQuery.dll
 C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\01_ShopQuery.pdb
 C:\Projects\C#\ShopProject\ShopManagement.Configuration\obj\Debug\net10.0\ShopManagement.Configuration.sourcelink.json
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\DiscountManagement.Application.Contracts.dll
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\DiscountManagement.Domain.dll
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\DiscountManagement.Infrastructure.EFCore.dll
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\InventoryManagement.Application.Contracts.dll
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\InventoryManagement.Domain.dll
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\InventoryManagement.Infrastructure.EFCore.dll
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\DiscountManagement.Application.Contracts.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\DiscountManagement.Domain.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\DiscountManagement.Infrastructure.EFCore.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\InventoryManagement.Application.Contracts.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\InventoryManagement.Domain.pdb
+C:\Projects\C#\ShopProject\ShopManagement.Configuration\bin\Debug\net10.0\InventoryManagement.Infrastructure.EFCore.pdb

@@ -181,3 +181,4 @@ C:\Projects\C#\ShopProject\ServiceHost\bin\Debug\net10.0\InventoryManagement.Inf
 C:\Projects\C#\ShopProject\ServiceHost\bin\Debug\net10.0\InventoryManagement.Application.Contracts.pdb
 C:\Projects\C#\ShopProject\ServiceHost\bin\Debug\net10.0\InventoryManagement.Domain.pdb
 C:\Projects\C#\ShopProject\ServiceHost\bin\Debug\net10.0\InventoryManagement.Infrastructure.EFCore.pdb
+C:\Projects\C#\ShopProject\ServiceHost\obj\Debug\net10.0\ServiceHost.MvcApplicationPartsAssemblyInfo.cs

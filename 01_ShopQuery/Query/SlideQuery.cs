@@ -1,4 +1,5 @@
 ﻿using _01_ShopQuery.Contracts.Slide;
+using Microsoft.EntityFrameworkCore;
 using ShopManagement.Infrastructure.EFCore;
 
 namespace _01_ShopQuery.Query;
@@ -26,6 +27,6 @@ public class SlideQuery : ISlideQuery
                 Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle
-            }).ToList();
+            }).AsNoTracking().ToList();
     }
 }
