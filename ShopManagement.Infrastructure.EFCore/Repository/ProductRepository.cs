@@ -44,8 +44,6 @@ public class ProductRepository : RepositoryBase<long, Product>, IProductReposito
 
     public List<ProductViewModel> Search(ProductSearchModel searchModel)
     {
-        var products = _context.Products.Include(x => x.Category).ToList();
-
         var query = _context.Products
             .Include(x => x.Category)
             .Select(x => new ProductViewModel

@@ -81,8 +81,6 @@ public class ProductCategoryQuery : IProductCategoryQuery
                         product.HasDiscount = true;
                         product.PriceWithDiscount = Math.Round(price * (100 - product.DiscountRate) / 100).ToMoney();
                     }
-                    else
-                        product.HasDiscount = false;
                 }
             }
         }
@@ -146,8 +144,6 @@ public class ProductCategoryQuery : IProductCategoryQuery
                     product.HasDiscount = true;
                     product.PriceWithDiscount = Math.Round(price * (100 - product.DiscountRate) / 100).ToMoney();
                 }
-                else
-                    product.HasDiscount = false;
             }
         }
 

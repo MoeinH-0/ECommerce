@@ -6,7 +6,7 @@ namespace _0_Framework.Infrastructure;
 
 public class RepositoryBase<TKey, T> : IRepository<TKey, T> where T : class
 {
-    protected readonly DbContext _context;
+    private readonly DbContext _context;
 
     public RepositoryBase(DbContext context)
     {

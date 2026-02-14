@@ -21,13 +21,13 @@ public class SlideRepository : RepositoryBase<long, Slide>, ISlideRepository
             Id = x.Id,
             BtnText = x.BtnText,
             Heading = x.Heading,
-            Picture = x.Picture,
+            // Picture = x.Picture,
             PictureAlt = x.PictureAlt,
             PictureTitle = x.PictureTitle,
             Text = x.Text,
             Title = x.Title,
             Link = x.Link
-        }).FirstOrDefault(x => x.Id == id);
+        }).FirstOrDefault(x => x.Id == id)!;
     }
 
     public List<SlideViewModel> GetList()

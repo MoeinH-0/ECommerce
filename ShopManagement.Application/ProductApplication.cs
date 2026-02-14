@@ -50,7 +50,7 @@ public class ProductApplication : IProductApplication
         if (product == null)
             return operationResult.Failed(ApplicationMessages.RecordNotFound);
         
-        var path = $"{product.Category.Slug}/{command.Slug.Slugify()}";
+        var path = $"{product.Category.Slug}//{command.Slug.Slugify()}";
         var picturePath = _fileUploader.Upload(command.Picture, path);
 
         product.Edit(command.Name, command.Description, picturePath,

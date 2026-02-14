@@ -21,10 +21,10 @@ public class ProductCategoryApplication : IProductCategoryApplication
         if (_repository.Exists(x => x.Name == command.Name))
             return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
-        var fileName = _fileUploader.Upload(command.Picture, command.Slug);
+        var pictureName = _fileUploader.Upload(command.Picture, command.Slug.Slugify());
         
         var productCategory = new ProductCategory
-        (command.Name, command.Description, fileName,
+        (command.Name, command.Description, pictureName,
             command.PictureAlt, command.PictureTitle, command.Keywords,
             command.MetaDescription, command.Slug.Slugify());
 
@@ -44,9 +44,9 @@ public class ProductCategoryApplication : IProductCategoryApplication
         if (productCategory == null)
             return operationResult.Failed(ApplicationMessages.RecordNotFound);
 
-        var fileName = _fileUploader.Upload(command.Picture, command.Slug);
+        var pictureName = _fileUploader.Upload(command.Picture, command.Slug.Slugify());
 
-        productCategory.Edit(command.Name, command.Description, fileName,
+        productCategory.Edit(command.Name, command.Description, pictureName,
             command.PictureAlt, command.PictureTitle, command.Keywords,
             command.MetaDescription, command.Slug.Slugify());
 
