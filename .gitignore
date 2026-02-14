@@ -1,127 +1,135 @@
-﻿# ========================
-# .NET / Build output
-# ========================
-bin/
-obj/
+﻿#############################################
+# .NET / ASP.NET Core (Clean Architecture)
+#############################################
+
+# Build results
 [Bb]in/
 [Oo]bj/
-[Dd]ebug*/
-[Rr]elease*/
-x64/
-x86/
-[Aa]rtifacts/
-TestResults/
+[Ll]og/
+*.log
 
-# ========================
-# User-specific / IDE
-# ========================
+# Published output
+**/[Pp]ublish/
+**/[Pp]ublished/
+*.Publish.xml
+
+# User-specific files
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
-*.rsuser
-*.rider
-.idea/
-.vs/
-.vscode/
 
-# ========================
 # NuGet
-# ========================
 *.nupkg
-*.snupkg
-.nuget/
-packages/
-**/packages/*
-**/project.lock.json
-**/project.fragment.lock.json
-**/artifacts/
+# (optional) if you use local packages folder:
+# packages/
 
-# ========================
-# Logs / temp / cache
-# ========================
-*.log
-*.tlog
+# Test results / coverage
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverage*/
+coveragereport*/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+#############################################
+# Visual Studio / VS Code / Rider / IntelliJ
+#############################################
+
+.vs/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Visual Studio cache / temp
 *.cache
-*.tmp
-*.temp
-*.bak
-*.old
-*.swp
-*.pid
+*.tlog
 *.pdb
 *.opendb
 *.VC.db
 *.VC.VC.opendb
 
-# ========================
-# ASP.NET Core / Config (secrets/env-specific)
-# ========================
+#############################################
+# .NET build artifacts you mentioned
+#############################################
+
+*.dll
+*.exe
+*.pdb
+*.mdb
+
+# Cache (typo-safe)
+*.cache
+
+#############################################
+# ASP.NET Core secrets / environment
+#############################################
+
+# App settings overrides (keep templates tracked if you have them)
 appsettings.Development.json
 appsettings.Local.json
-appsettings.*.local.json
+
+# Generic env files
+.env
+.env.*
 secrets.json
 
-# ========================
-# EF Core
-# ========================
-**/Migrations/*.Designer.cs
-**/Migrations/*Snapshot.cs
+#############################################
+# OS generated
+#############################################
 
-# ========================
-# Publish outputs
-# ========================
-**/publish/
-**/app.publish/
-
-# ========================
-# Frontend (Node)
-# ========================
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-dist/
-build/
-.cache/
-.parcel-cache/
-.next/
-out/
-coverage/
-
-# ========================
-# wwwroot (ignore generated content, keep folder)
-# ========================
-wwwroot/**
-!wwwroot/
-!wwwroot/.gitkeep
-
-# ========================
-# Docker
-# ========================
-**/.dockerignore
-**/*-compose.override.yml
-
-# ========================
-# OS files
-# ========================
+.DS_Store
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-.DS_Store
 
-# ========================
-# Certificate / HTTPS dev
-# ========================
-*.pfx
-*.pem
-*.crt
-*.key
+#############################################
+# Node / Frontend (if any)
+#############################################
 
-# ========================
+node_modules/
+dist/
+build/
+.cache/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+#############################################
+# wwwroot handling (IMPORTANT)
+#############################################
+wwwroot/**
+
+!wwwroot/
+!wwwroot/.gitkeep
+
+#############################################
 # Misc
-# ========================
-_ReSharper*/
-*.[Rr]e[Ss]harper
-*.DotSettings.user
+#############################################
+
+# Backup / temp
+*.bak
+*.tmp
+*.temp
+*.swp
+*~
+
+# JetBrains Rider specific
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/contentModel.xml
+.idea/**/modules.xml
+.idea/**/.name
+.idea/**/dataSources/
+.idea/**/dataSources.local.xml
