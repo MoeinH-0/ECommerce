@@ -11,9 +11,9 @@ namespace _01_ShopQuery.Query;
 
 public class ProductCategoryQuery : IProductCategoryQuery
 {
-    private readonly ShopContext _shopContext;
-    private readonly InventoryContext _inventoryContext;
     private readonly DiscountContext _discountContext;
+    private readonly InventoryContext _inventoryContext;
+    private readonly ShopContext _shopContext;
 
     public ProductCategoryQuery(ShopContext shopContext, InventoryContext inventoryContext,
         DiscountContext discountContext)
@@ -62,44 +62,28 @@ public class ProductCategoryQuery : IProductCategoryQuery
             }).AsNoTracking().ToList();
 
         foreach (var category in categories)
+        foreach (var product in category.Products)
         {
-            foreach (var product in category.Products)
+            var productInventory = inventory.FirstOrDefault
+                (x => x.ProductId == product.Id);
+
+            if (productInventory != null)
             {
-                var productInventory = inventory.FirstOrDefault
+                var price = productInventory.UnitPrice;
+                product.Price = price.ToMoney();
+
+                var discount = discounts.FirstOrDefault
                     (x => x.ProductId == product.Id);
-
-                if (productInventory != null)
+                if (discount != null)
                 {
-                    var price = productInventory.UnitPrice;
-                    product.Price = price.ToMoney();
-
-                    var discount = discounts.FirstOrDefault
-                        (x => x.ProductId == product.Id);
-                    if (discount != null)
-                    {
-                        product.DiscountRate = discount.DiscountRate;
-                        product.HasDiscount = true;
-                        product.PriceWithDiscount = Math.Round(price * (100 - product.DiscountRate) / 100).ToMoney();
-                    }
+                    product.DiscountRate = discount.DiscountRate;
+                    product.HasDiscount = true;
+                    product.PriceWithDiscount = Math.Round(price * (100 - product.DiscountRate) / 100).ToMoney();
                 }
             }
         }
 
         return categories;
-    }
-
-    private static List<ProductQueryModel> MapProducts(List<Product> products)
-    {
-        return products.Select(x => new ProductQueryModel
-        {
-            Id = x.Id,
-            Category = x.Category.Name,
-            Name = x.Name,
-            Picture = x.Picture,
-            PictureAlt = x.PictureAlt,
-            PictureTitle = x.PictureTitle,
-            Slug = x.Slug
-        }).OrderByDescending(x => x.Id).ToList();
     }
 
     public ProductCategoryQueryModel GetProductCategoryWithProductsBy(string slug)
@@ -134,8 +118,7 @@ public class ProductCategoryQuery : IProductCategoryQuery
             {
                 var price = productInventory.UnitPrice;
                 product.Price = price.ToMoney();
-                var discount = discounts.
-                    FirstOrDefault(x => x.ProductId == product.Id);
+                var discount = discounts.FirstOrDefault(x => x.ProductId == product.Id);
 
                 if (discount != null)
                 {
@@ -148,5 +131,19 @@ public class ProductCategoryQuery : IProductCategoryQuery
         }
 
         return category;
+    }
+
+    private static List<ProductQueryModel> MapProducts(List<Product> products)
+    {
+        return products.Select(x => new ProductQueryModel
+        {
+            Id = x.Id,
+            Category = x.Category.Name,
+            Name = x.Name,
+            Picture = x.Picture,
+            PictureAlt = x.PictureAlt,
+            PictureTitle = x.PictureTitle,
+            Slug = x.Slug
+        }).OrderByDescending(x => x.Id).ToList();
     }
 }

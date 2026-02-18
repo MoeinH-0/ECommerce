@@ -11,8 +11,8 @@ namespace _01_ShopQuery.Query;
 public class ProductQuery : IProductQuery
 {
     private readonly ShopContext _context;
-    private readonly InventoryContext _inventoryContext;
     private readonly DiscountContext _discountContext;
+    private readonly InventoryContext _inventoryContext;
 
     public ProductQuery(ShopContext context, InventoryContext inventoryContext, DiscountContext discountContext)
     {
@@ -127,14 +127,14 @@ public class ProductQuery : IProductQuery
 
     private static List<ProductPictureQueryModel> MapProductPictures(List<ProductPicture> pictures)
     {
-        return pictures.Select(x => new ProductPictureQueryModel()
-        {
-            IsRemoved = x.IsRemoved,
-            Picture = x.Picture,
-            PictureAlt = x.PictureAlt,
-            PictureTitle = x.PictureTitle,
-            ProductId = x.ProductId
-        }).Where(x => !x.IsRemoved)
+        return pictures.Select(x => new ProductPictureQueryModel
+            {
+                IsRemoved = x.IsRemoved,
+                Picture = x.Picture,
+                PictureAlt = x.PictureAlt,
+                PictureTitle = x.PictureTitle,
+                ProductId = x.ProductId
+            }).Where(x => !x.IsRemoved)
             .ToList();
     }
 }
