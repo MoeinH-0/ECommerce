@@ -1,4 +1,5 @@
 using _0_Framework.Application;
+using BlogManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using DiscountManagement.Configuration;
 using InventoryManagement.Infrastructure.Configuration;
@@ -19,6 +20,9 @@ InventoryManagementBootstrapper.Configure
     (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
 
 CommentManagementBootstrapper.Configure
+    (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
+
+BlogManagementBootstrapper.Configure
     (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
 
 builder.Services.AddTransient<IFileUploader, FileUploader>();
