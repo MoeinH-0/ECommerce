@@ -1,5 +1,7 @@
 ﻿using _0_Framework.Application;
+using _01_ShopQuery.Contracts.Comment;
 using _01_ShopQuery.Contracts.Product;
+using CommentManagement.Infrastructure.EFCore;
 using DiscountManagement.Infrastructure.EFCore;
 using InventoryManagement.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +15,7 @@ public class ProductQuery : IProductQuery
     private readonly ShopContext _context;
     private readonly DiscountContext _discountContext;
     private readonly InventoryContext _inventoryContext;
+    private readonly CommentContext _commentContext;
 
     public ProductQuery(ShopContext context, InventoryContext inventoryContext,
         DiscountContext discountContext)
@@ -74,6 +77,19 @@ public class ProductQuery : IProductQuery
                 product.PriceWithDiscount = Math.Round(price * (100 - product.DiscountRate) / 100).ToMoney();
             }
         }
+
+        product.Comments = _commentContext.Comments
+            .Where(x => !x.IsCanceled)
+            .Where(x => x.IsConfirmed)
+            .Where(x => x.Type == CommentType.Product)
+            .Where(x => x.OwnerRecordId == product.Id)
+            .Select(x => new CommentQueryModel
+            {
+                Id = x.Id,
+                Message = x.Message,
+                Name = x.Name,
+                CreationDate = x.CreationDate.ToFarsi()
+            }).OrderByDescending(x => x.Id).ToList();
 
         return product;
     }

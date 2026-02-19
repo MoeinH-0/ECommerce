@@ -1,4 +1,6 @@
-﻿namespace _01_ShopQuery.Contracts.Product;
+﻿using _01_ShopQuery.Contracts.Comment;
+
+namespace _01_ShopQuery.Contracts.Product;
 
 public class ProductQueryModel
 {
@@ -21,5 +23,6 @@ public class ProductQueryModel
     public string Keywords { get; set; }
     public string MetaDescription { get; set; }
     public bool IsInStock { get; set; }
+    public List<CommentQueryModel> Comments { get; set; }
     public List<ProductPictureQueryModel> Pictures { get; set; }
 }

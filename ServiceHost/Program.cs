@@ -1,4 +1,7 @@
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using _0_Framework.Application;
+using AccountManagement.Infrastructure.Configuration;
 using BlogManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using DiscountManagement.Configuration;
@@ -10,22 +13,32 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
-ShopManagementBootstrapper.Configuration
-    (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
+var connectionString =
+    builder.Configuration.GetConnectionString("ShopDatabase")!;
 
-DiscountManagementBootstrapper.Configure
-    (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
+ShopManagementBootstrapper
+    .Configuration(builder.Services, connectionString);
 
-InventoryManagementBootstrapper.Configure
-    (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
+DiscountManagementBootstrapper
+    .Configure(builder.Services, connectionString);
 
-CommentManagementBootstrapper.Configure
-    (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
+InventoryManagementBootstrapper
+    .Configure(builder.Services, connectionString);
 
-BlogManagementBootstrapper.Configure
-    (builder.Services, builder.Configuration.GetConnectionString("ShopDatabase")!);
+CommentManagementBootstrapper
+    .Configure(builder.Services, connectionString);
+
+BlogManagementBootstrapper
+    .Configure(builder.Services, connectionString);
+
+AccountManagementBootstrapper
+    .Configure(builder.Services, connectionString);
+
+builder.Services.AddSingleton
+    (HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
 builder.Services.AddTransient<IFileUploader, FileUploader>();
+builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
 var app = builder.Build();
 
@@ -42,8 +55,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-app.MapRazorPages()
-    .WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.MapDefaultControllerRoute();
 app.Run();
