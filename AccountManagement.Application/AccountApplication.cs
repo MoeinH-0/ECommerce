@@ -1,7 +1,6 @@
 ﻿using _0_Framework.Application;
 using AccountManagement.Application.Contracts.Account;
 using AccountManagement.Domain.AccountAgg;
-using AccountManagement.Infrastructure.EFCore.Repository;
 
 namespace AccountManagement.Application;
 
@@ -48,8 +47,8 @@ public class AccountApplication : IAccountApplication
         if (account == null)
             return operation.Failed(ApplicationMessages.RecordNotFound);
 
-        if (_accountRepository.Exists(x => x.Username == command.UserName
-                                           || x.Mobile == command.Mobile && x.Id != command.Id))
+        if (_accountRepository.Exists(x => (x.Username == command.UserName
+                                            || x.Mobile == command.Mobile) && x.Id != command.Id))
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
         
         var path = "profilePhotos"; 

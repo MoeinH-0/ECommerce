@@ -1,13 +1,25 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.ComponentModel.DataAnnotations;
+using _0_Framework.Application;
+using Microsoft.AspNetCore.Http;
 
 namespace AccountManagement.Application.Contracts.Account;
 
 public class CreateAccount
 {
-    public string FullName { get;  set; }
-    public string UserName { get;  set; }
-    public string Password { get;  set; }
-    public string Mobile { get;  set; }
-    public long RoleId { get;  set; }
-    public IFormFile ProfilePhoto { get;  set; }
+    [Required(ErrorMessage = ValidationMessages.IsRequired)]
+    public string FullName { get; set; }
+
+    [Required(ErrorMessage = ValidationMessages.IsRequired)]
+    public string UserName { get; set; }
+
+    [Required(ErrorMessage = ValidationMessages.IsRequired)]
+    public string Password { get; set; }
+
+    [Required(ErrorMessage = ValidationMessages.IsRequired)]
+    public string Mobile { get; set; }
+
+    [Range(1, 20, ErrorMessage = ValidationMessages.IsRequired)]
+    public long RoleId { get; set; }
+
+    public IFormFile ProfilePhoto { get; set; }
 }
