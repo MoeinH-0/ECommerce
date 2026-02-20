@@ -2,6 +2,7 @@
 using _0_Framework.Infrastructure;
 using AccountManagement.Application.Contracts.Account;
 using AccountManagement.Domain.AccountAgg;
+using Microsoft.EntityFrameworkCore;
 
 namespace AccountManagement.Infrastructure.EFCore.Repository;
 
@@ -12,6 +13,11 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
     public AccountRepository(AccountContext context) : base(context)
     {
         _context = context;
+    }
+
+    public Account? GetByUsername(string username)
+    {
+        return _context.Accounts.FirstOrDefault(x => x.Username == username);
     }
 
     public EditAccount? GetDetails(long id)
@@ -28,17 +34,19 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
 
     public List<AccountViewModel> Search(AccountSearchModel searchModel)
     {
-        var query = _context.Accounts.Select(x => new AccountViewModel
-        {
-            Id = x.Id,
-            FullName = x.FullName,
-            Mobile = x.Mobile,
-            UserName = x.Username,
-            Role = "manager",
-            RoleId = x.RoleId,
-            ProfilePhoto = x.ProfilePhoto,
-            CreationDate = x.CreationDate.ToFarsi()
-        });
+        var query = _context.Accounts
+            .Include(x => x.Role)
+            .Select(x => new AccountViewModel
+            {
+                Id = x.Id,
+                FullName = x.FullName,
+                Mobile = x.Mobile,
+                UserName = x.Username,
+                Role = x.Role.Name,
+                RoleId = x.RoleId,
+                ProfilePhoto = x.ProfilePhoto,
+                CreationDate = x.CreationDate.ToFarsi()
+            });
 
         if (!string.IsNullOrWhiteSpace(searchModel.FullName))
             query = query.Where
@@ -54,7 +62,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
 
         if (searchModel.RoleId > 0)
             query = query.Where
-                 (x => x.RoleId == searchModel.RoleId);
+                (x => x.RoleId == searchModel.RoleId);
 
         return query.OrderByDescending(x => x.Id).ToList();
     }
