@@ -1,6 +1,7 @@
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using _0_Framework.Application;
+using _0_Framework.Infrastructure;
 using AccountManagement.Infrastructure.Configuration;
 using BlogManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
@@ -12,7 +13,6 @@ using ShopManagement.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorPages();
 builder.Services.AddHttpContextAccessor();
 
 var connectionString =
@@ -58,6 +58,25 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         o.AccessDeniedPath = new PathString("/AccessDenied");
     });
 
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("AdminArea", policy =>
+        policy.RequireRole(new List<string> { Roles.Administrator, Roles.ContentUploader }))
+    .AddPolicy("Shop", policy =>
+        policy.RequireRole(new List<string> { Roles.Administrator }))
+    .AddPolicy("Discount", policy =>
+    policy.RequireRole(new List<string> { Roles.Administrator }))
+    .AddPolicy("Account", policy =>
+    policy.RequireRole(new List<string> { Roles.Administrator }));
+
+builder.Services.AddRazorPages()
+    .AddRazorPagesOptions(option =>
+    {
+        option.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+        option.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "Shop");
+        option.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
+        option.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
+    });
+        
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
