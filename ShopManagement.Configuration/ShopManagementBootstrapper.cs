@@ -1,4 +1,5 @@
-﻿using _01_ShopQuery.Contracts.Product;
+﻿using _0_Framework.Infrastructure;
+using _01_ShopQuery.Contracts.Product;
 using _01_ShopQuery.Contracts.ProductCategory;
 using _01_ShopQuery.Contracts.Slide;
 using _01_ShopQuery.Query;
@@ -9,6 +10,7 @@ using ShopManagement.Application.Contracts.Product;
 using ShopManagement.Application.Contracts.ProductCategory;
 using ShopManagement.Application.Contracts.ProductPicture;
 using ShopManagement.Application.Contracts.Slide;
+using ShopManagement.Configuration.Permissions;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg;
 using ShopManagement.Domain.ProductPictureAgg;
@@ -18,7 +20,7 @@ using ShopManagement.Infrastructure.EFCore.Repository;
 
 namespace ShopManagement.Configuration;
 
-public class ShopManagementBootstrapper
+public static class ShopManagementBootstrapper
 {
     public static void Configuration(IServiceCollection services, string connectionString)
     {
@@ -37,6 +39,8 @@ public class ShopManagementBootstrapper
         services.AddTransient<ISlideQuery, SlideQuery>();
         services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
         services.AddTransient<IProductQuery, ProductQuery>();
+        
+        services.AddTransient<IPermissionExposer, ShopPermissionExposer>();
 
         services.AddDbContext<ShopContext>(x => x.UseNpgsql(connectionString));
     }

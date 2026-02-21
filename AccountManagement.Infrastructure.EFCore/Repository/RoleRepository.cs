@@ -7,8 +7,8 @@ namespace AccountManagement.Infrastructure.EFCore.Repository;
 
 public class RoleRepository : RepositoryBase<long, Role>, IRoleRepository
 {
-    private readonly AccountContext _accountContext; 
-    
+    private readonly AccountContext _accountContext;
+
     public RoleRepository(AccountContext accountContext) : base(accountContext)
     {
         _accountContext = accountContext;
@@ -30,7 +30,15 @@ public class RoleRepository : RepositoryBase<long, Role>, IRoleRepository
             .Select(x => new EditRole
             {
                 Id = x.Id,
-                Name = x.Name
-            }).FirstOrDefault(x => x.Id == id);
+                Name = x.Name,
+                MappedPermissions = MapPermissions(x.Permissions)
+            }).AsNoTracking()
+            .FirstOrDefault(x => x.Id == id);
+    }
+
+    private static List<PermissionDto> MapPermissions(IEnumerable<Permission> permissions)
+    {
+        return permissions.Select(x =>
+            new PermissionDto(x.Code, x.Name)).ToList();
     }
 }

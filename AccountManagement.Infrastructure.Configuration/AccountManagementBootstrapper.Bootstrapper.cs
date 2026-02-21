@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AccountManagement.Infrastructure.Configuration;
 
-public class AccountManagementBootstrapper
+public static class AccountManagementBootstrapper
 {
     public static void Configure(IServiceCollection service, string connectionString)
     {
