@@ -11,19 +11,19 @@ public class ShopPermissionExposer : IPermissionExposer
             {
                 "Product", new List<PermissionDto>
                 {
-                    new(10, "List Products"),
-                    new(11, "Search Products"),
-                    new(12, "Create Product"),
-                    new(13, "Edit Product"),
+                    new(ShopPermission.ListProduct, "List Products"),
+                    new(ShopPermission.SearchProduct, "Search Products"),
+                    new(ShopPermission.CreateProduct, "Create Product"),
+                    new(ShopPermission.EditProduct, "Edit Product"),
                 }
             },
             {
                 "ProductCategory", new List<PermissionDto>
                 {
-                    new(20, "Search Product Categories"),
-                    new(21, "List Product Categories"),
-                    new(22, "Create Product Category"),
-                    new(23, "Edit Product Category"),
+                    new(ShopPermission.SearchProductCategory, "Search Product Categories"),
+                    new(ShopPermission.ListProductCategory, "List Product Categories"),
+                    new(ShopPermission.CreateProductCategory, "Create Product Category"),
+                    new(ShopPermission.EditProductCategory, "Edit Product Category"),
                 }
             }
         };

@@ -11,10 +11,13 @@ public class InventoryPermissionExposer : IPermissionExposer
             {
                 "Inventory", new List<PermissionDto>
                 {
-                    new(50, "List Inventory"),
-                    new(51, "Search Inventory"),
-                    new(52, "Create Inventory"),
-                    new(53, "Edit Inventory"),
+                    new(InventoryPermissions.ListInventory, "List Inventory"),
+                    new(InventoryPermissions.SearchInventory, "Search Inventory"),
+                    new(InventoryPermissions.CreateInventory, "Create Inventory"),
+                    new(InventoryPermissions.EditInventory, "Edit Inventory"),
+                    new(InventoryPermissions.IncreaseInventory, "Increase Inventory"),
+                    new(InventoryPermissions.ReduceInventory, "Reduce Inventory"),
+                    new(InventoryPermissions.OperationLog, "Operation Log"),
                 }
             }
         };

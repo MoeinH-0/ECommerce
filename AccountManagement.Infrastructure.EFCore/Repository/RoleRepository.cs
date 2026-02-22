@@ -26,7 +26,7 @@ public class RoleRepository : RepositoryBase<long, Role>, IRoleRepository
 
     public EditRole? GetDetails(long id)
     {
-        return _accountContext.Roles
+        var role = _accountContext.Roles
             .Select(x => new EditRole
             {
                 Id = x.Id,
@@ -34,6 +34,11 @@ public class RoleRepository : RepositoryBase<long, Role>, IRoleRepository
                 MappedPermissions = MapPermissions(x.Permissions)
             }).AsNoTracking()
             .FirstOrDefault(x => x.Id == id);
+
+        role?.Permissions = role.MappedPermissions
+            .Select(x => x.Code).ToList();
+        
+        return role;
     }
 
     private static List<PermissionDto> MapPermissions(IEnumerable<Permission> permissions)

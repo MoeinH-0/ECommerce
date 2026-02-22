@@ -64,11 +64,12 @@ builder.Services.AddAuthorizationBuilder()
     .AddPolicy("Shop", policy =>
         policy.RequireRole(new List<string> { Roles.Administrator }))
     .AddPolicy("Discount", policy =>
-    policy.RequireRole(new List<string> { Roles.Administrator }))
+        policy.RequireRole(new List<string> { Roles.Administrator }))
     .AddPolicy("Account", policy =>
-    policy.RequireRole(new List<string> { Roles.Administrator }));
+        policy.RequireRole(new List<string> { Roles.Administrator }));
 
 builder.Services.AddRazorPages()
+    .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
     .AddRazorPagesOptions(option =>
     {
         option.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
@@ -76,7 +77,7 @@ builder.Services.AddRazorPages()
         option.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
         option.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
     });
-        
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
