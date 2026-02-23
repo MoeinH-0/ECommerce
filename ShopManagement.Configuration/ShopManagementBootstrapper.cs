@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
+using _01_ShopQuery.Contracts.CartContract;
 using _01_ShopQuery.Contracts.Product;
 using _01_ShopQuery.Contracts.ProductCategory;
 using _01_ShopQuery.Contracts.Slide;
@@ -39,6 +40,7 @@ public static class ShopManagementBootstrapper
         services.AddTransient<ISlideQuery, SlideQuery>();
         services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
         services.AddTransient<IProductQuery, ProductQuery>();
+        services.AddTransient<ICartCalculatorService, CartCalculatorService>();
         
         services.AddTransient<IPermissionExposer, ShopPermissionExposer>();
 

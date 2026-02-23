@@ -5,6 +5,7 @@ using CommentManagement.Infrastructure.EFCore;
 using DiscountManagement.Infrastructure.EFCore;
 using InventoryManagement.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Application.Contracts.Order;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastructure.EFCore;
 
@@ -28,11 +29,14 @@ public class ProductQuery : IProductQuery
     public ProductQueryModel GetDetails(string slug)
     {
         var inventory = _inventoryContext.Inventory
-            .Select(x => new { x.ProductId, x.UnitPrice, x.InStock }).AsNoTracking().ToList();
+            .Select(x => new { x.ProductId, x.UnitPrice, x.InStock })
+            .AsNoTracking().ToList();
 
         var discounts = _discountContext.CustomerDiscounts
-            .Where(x => x.StartDate <= DateTime.UtcNow && x.EndDate > DateTime.UtcNow)
-            .Select(x => new { x.DiscountRate, x.ProductId, x.EndDate }).AsNoTracking().ToList();
+            .Where(x => x.StartDate <= DateTime.UtcNow
+                        && x.EndDate > DateTime.UtcNow)
+            .Select(x => new { x.DiscountRate, x.ProductId, x.EndDate })
+            .AsNoTracking().ToList();
 
         var product = _context.Products
             .Include(x => x.Category)
@@ -66,6 +70,7 @@ public class ProductQuery : IProductQuery
             product.IsInStock = productInventory.InStock;
             var price = productInventory.UnitPrice;
             product.Price = price.ToMoney();
+            product.DoublePrice = price;
             var discount =
                 discounts.FirstOrDefault(x => x.ProductId == product.Id);
 
@@ -106,15 +111,15 @@ public class ProductQuery : IProductQuery
 
         var products = _context.Products
             .Include(x => x.Category)
-            .Select(product => new ProductQueryModel
+            .Select(x => new ProductQueryModel
             {
-                Id = product.Id,
-                Category = product.Category.Name,
-                Name = product.Name,
-                Picture = product.Picture,
-                PictureAlt = product.PictureAlt,
-                PictureTitle = product.PictureTitle,
-                Slug = product.Slug
+                Id = x.Id,
+                Category = x.Category.Name,
+                Name = x.Name,
+                Picture = x.Picture,
+                PictureAlt = x.PictureAlt,
+                PictureTitle = x.PictureTitle,
+                Slug = x.Slug
             }).OrderByDescending(x => x.Id).Take(6).AsNoTracking().ToList();
 
         foreach (var product in products)
@@ -126,6 +131,7 @@ public class ProductQuery : IProductQuery
             {
                 var price = productInventory.UnitPrice;
                 product.Price = price.ToMoney();
+                product.DoublePrice = price;
                 var discount =
                     discounts.FirstOrDefault(x => x.ProductId == product.Id);
 
@@ -153,17 +159,17 @@ public class ProductQuery : IProductQuery
 
         var query = _context.Products
             .Include(x => x.Category)
-            .Select(product => new ProductQueryModel
+            .Select(x => new ProductQueryModel
             {
-                Id = product.Id,
-                Category = product.Category.Name,
-                CategorySlug = product.Category.Slug,
-                Name = product.Name,
-                Picture = product.Picture,
-                PictureAlt = product.PictureAlt,
-                PictureTitle = product.PictureTitle,
-                ShortDescription = product.ShortDescription,
-                Slug = product.Slug
+                Id = x.Id,
+                Category = x.Category.Name,
+                CategorySlug = x.Category.Slug,
+                Name = x.Name,
+                Picture = x.Picture,
+                PictureAlt = x.PictureAlt,
+                PictureTitle = x.PictureTitle,
+                ShortDescription = x.ShortDescription,
+                Slug = x.Slug
             }).AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(value))
@@ -174,25 +180,41 @@ public class ProductQuery : IProductQuery
 
         foreach (var product in products)
         {
-            var productInventory = inventory.FirstOrDefault(x => x.ProductId == product.Id);
-            if (productInventory != null)
-            {
-                var price = productInventory.UnitPrice;
-                product.Price = price.ToMoney();
-                var discount = discounts.FirstOrDefault(x => x.ProductId == product.Id);
-                if (discount != null)
-                {
-                    int discountRate = discount.DiscountRate;
-                    product.DiscountRate = discountRate;
-                    product.DiscountExpireDate = discount.EndDate.ToDiscountFormat();
-                    product.HasDiscount = discountRate > 0;
-                    var discountAmount = Math.Round((price * discountRate) / 100);
-                    product.PriceWithDiscount = (price - discountAmount).ToMoney();
-                }
-            }
+            var productInventory = inventory.FirstOrDefault
+                (x => x.ProductId == product.Id);
+            if (productInventory == null) continue;
+
+            var price = productInventory.UnitPrice;
+            product.Price = price.ToMoney();
+            product.DoublePrice = price;
+            var discount = discounts.FirstOrDefault(x => x.ProductId == product.Id);
+            if (discount == null) continue;
+
+            var discountRate = discount.DiscountRate;
+            product.DiscountRate = discountRate;
+            product.DiscountExpireDate = discount.EndDate.ToDiscountFormat();
+            product.HasDiscount = discountRate > 0;
+            var discountAmount = Math.Round((price * discountRate) / 100);
+            product.PriceWithDiscount = (price - discountAmount).ToMoney();
         }
 
         return products;
+    }
+
+    public List<CartItem> CheckInventoryStatus(List<CartItem> cartItems)
+    {
+        var inventories = _inventoryContext.Inventory.ToList();
+
+        foreach (var cartItem in cartItems)
+        {
+            var inventory = inventories.FirstOrDefault(x =>
+                x.ProductId == cartItem.Id && x.InStock);
+            
+            if (inventory != null)      
+                cartItem.IsInStock = cartItem.Count <= inventory.CalculateCurrentCount();
+        }
+
+        return cartItems;
     }
 
     private static List<ProductPictureQueryModel> MapProductPictures(List<ProductPicture> pictures)
