@@ -17,7 +17,8 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
 
     public Account? GetByUsername(string username)
     {
-        return _context.Accounts.FirstOrDefault(x => x.Username == username);
+        return _context.Accounts.FirstOrDefault
+            (x => x.Username == username);
     }
 
     public EditAccount? GetDetails(long id)
@@ -30,6 +31,16 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
             UserName = x.Username,
             RoleId = x.RoleId
         }).FirstOrDefault(x => x.Id == id);
+    }
+
+    public List<AccountViewModel> GetAccounts()
+    {
+        return _context.Accounts
+            .Select(x => new AccountViewModel
+            {
+                Id = x.Id,
+                FullName = x.FullName
+            }).ToList();
     }
 
     public List<AccountViewModel> Search(AccountSearchModel searchModel)

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace _0_Framework.Application;
-            
+
 public class AuthHelper : IAuthHelper
 {
     private readonly IHttpContextAccessor _contextAccessor;

@@ -10,5 +10,6 @@ public interface IAccountApplication
     OperationResult Login(Login command);
     void Logout();
     EditAccount? GetDetails(long id);
+    List<AccountViewModel> GetAccounts();
     List<AccountViewModel> Search(AccountSearchModel searchModel);
 }

@@ -40,6 +40,7 @@ public static class Tools
         if (date == new DateTime()) return "";
         return $"{date.Year}/{date.Month:00}/{date.Day:00}";
     }
+
     public static string GetTime(this DateTime date)
     {
         return $"_{date.Hour:00}_{date.Minute:00}_{date.Second:00}";

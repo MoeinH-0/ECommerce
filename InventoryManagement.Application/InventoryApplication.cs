@@ -7,11 +7,13 @@ namespace InventoryManagement.Application;
 
 public class InventoryApplication : IInventoryApplication
 {
+    private readonly IAuthHelper _authHelper;
     private readonly IInventoryRepository _repository;
 
-    public InventoryApplication(IInventoryRepository repository)
+    public InventoryApplication(IInventoryRepository repository, IAuthHelper authHelper)
     {
         _repository = repository;
+        _authHelper = authHelper;
     }
 
     public OperationResult Create(CreateInventory command)
@@ -34,8 +36,10 @@ public class InventoryApplication : IInventoryApplication
         if (inventory == null)
             return operationResult.Failed(ApplicationMessages.RecordNotFound);
 
-        if (_repository.Exists(x => x.ProductId == command.ProductId && x.Id != command.Id))
+        if (_repository.Exists(x => x.ProductId == command.ProductId
+                                    && x.Id != command.Id))
             return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
+        
         inventory.Edit(command.ProductId, command.UnitPrice);
         _repository.SaveChanges();
 
@@ -56,7 +60,7 @@ public class InventoryApplication : IInventoryApplication
         return operationResult.Succeeded();
     }
 
-    public OperationResult Reduce(DecreaseInventory command)
+    public OperationResult Reduce(ReduceInventory command)
     {
         var operationResult = new OperationResult();
 
@@ -64,20 +68,22 @@ public class InventoryApplication : IInventoryApplication
         if (inventory == null)
             return operationResult.Failed(ApplicationMessages.RecordNotFound);
 
-        inventory.Reduce(command.Count, 1, command.Description, 0);
+        var operatorId = _authHelper.CurrentAccountId();
+        inventory.Reduce(command.Count, operatorId, command.Description, 0);
         _repository.SaveChanges();
 
         return operationResult.Succeeded();
     }
 
-    public OperationResult Reduce(List<DecreaseInventory> command)
+    public OperationResult Reduce(List<ReduceInventory> command)
     {
         var operationResult = new OperationResult();
+        var operatorId = _authHelper.CurrentAccountId();
 
         foreach (var item in command)
         {
             var inventory = _repository.GetBy(item.ProductId);
-            inventory.Reduce(item.Count, 1, item.Description, item.OrderId);
+            inventory!.Reduce(item.Count, operatorId, item.Description, item.OrderId);
         }
 
         _repository.SaveChanges();

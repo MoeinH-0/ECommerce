@@ -28,10 +28,7 @@ public class PasswordHasher : IPasswordHasher
     {
         var parts = hash.Split('.', 3);
 
-        if (parts.Length != 3)
-        {
-            return (false, false);
-        }
+        if (parts.Length != 3) return (false, false);
 
         var iterations = Convert.ToInt32(parts[0]);
         var salt = Convert.FromBase64String(parts[1]);
