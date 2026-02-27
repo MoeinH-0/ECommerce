@@ -19,10 +19,11 @@ public class ProductQuery : IProductQuery
     private readonly CommentContext _commentContext;
 
     public ProductQuery(ShopContext context, InventoryContext inventoryContext,
-        DiscountContext discountContext)
+        DiscountContext discountContext, CommentContext commentContext)
     {
         _context = context;
         _discountContext = discountContext;
+        _commentContext = commentContext;
         _inventoryContext = inventoryContext;
     }
 

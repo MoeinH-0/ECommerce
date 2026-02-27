@@ -2,6 +2,6 @@
 
 public interface IArticleQuery
 {
-    List<ArticleQueryModel> LatestArticles();
+    List<ArticleQueryModel> GetLatestArticles();
     ArticleQueryModel GetArticleDetails(string slug);
 }

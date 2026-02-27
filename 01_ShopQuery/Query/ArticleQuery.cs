@@ -69,7 +69,7 @@ public class ArticleQuery : IArticleQuery
         return article;
     }
 
-    public List<ArticleQueryModel> LatestArticles()
+    public List<ArticleQueryModel> GetLatestArticles()
     {
         return _context.Articles
             .Include(x => x.Category)

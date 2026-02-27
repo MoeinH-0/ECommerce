@@ -21,6 +21,7 @@ using ShopManagement.Domain.Services;
 using ShopManagement.Domain.SlideAgg;
 using ShopManagement.Infrastructure.EFCore;
 using ShopManagement.Infrastructure.EFCore.Repository;
+using ShopManagement.Infrastructure.InventoryAcl;
 
 namespace ShopManagement.Configuration;
 
@@ -44,7 +45,7 @@ public static class ShopManagementBootstrapper
         services.AddTransient<IOrderRepository, OrderRepository>();
 
         services.AddSingleton<ICartService, CartService>();
-        services.AddTransient<IShopInventoryAcl, IShopInventoryAcl>();
+        services.AddTransient<IShopInventoryAcl, ShopInventoryAcl>();
         
         services.AddTransient<ISlideQuery, SlideQuery>();
         services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();

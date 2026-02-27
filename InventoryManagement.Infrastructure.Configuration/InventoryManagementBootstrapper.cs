@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
+using _01_ShopQuery.Contracts.Inventory;
 using InventoryManagement.Application;
 using InventoryManagement.Application.Contracts.Inventory;
 using InventoryManagement.Domain.InventoryAgg;
@@ -18,7 +19,8 @@ public static class InventoryManagementBootstrapper
         services.AddTransient<IInventoryApplication, InventoryApplication>();
 
         services.AddTransient<IPermissionExposer, InventoryPermissionExposer>();
-        
+
+        services.AddTransient<IInventoryQuery, IInventoryQuery>();
         services.AddDbContext<InventoryContext>(x => x.UseNpgsql(connectionString));
     }
 }
