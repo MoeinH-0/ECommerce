@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using _0_Framework.Application.Sms;
 using Microsoft.Extensions.Configuration;
 using ShopManagement.Application.Contracts.Order;
 using ShopManagement.Domain.OrderAgg;
@@ -12,14 +13,19 @@ public class OrderApplication : IOrderApplication
     private readonly IConfiguration _configuration;
     private readonly IOrderRepository _orderRepository;
     private readonly IShopInventoryAcl _shopInventoryAcl;
-
+    private readonly ISmsService _smsService;
+    private readonly IShopAccountAcl _accountAcl;
+    
     public OrderApplication(IOrderRepository orderRepository,
-        IAuthHelper authHelper, IConfiguration configuration, IShopInventoryAcl shopInventoryAcl)
+        IAuthHelper authHelper, IConfiguration configuration,
+        IShopInventoryAcl shopInventoryAcl, ISmsService smsService, IShopAccountAcl accountAcl)
     {
         _orderRepository = orderRepository;
         _authHelper = authHelper;
         _configuration = configuration;
         _shopInventoryAcl = shopInventoryAcl;
+        _smsService = smsService;
+        _accountAcl = accountAcl;
     }
 
     public long PlaceOrder(Cart cart)
@@ -53,10 +59,17 @@ public class OrderApplication : IOrderApplication
 
         if (!_shopInventoryAcl.ReduceFromInventory(order.Items))
             return "";
-        
-        _orderRepository.SaveChanges();
-        return issueTrackingNo;
 
+        _orderRepository.SaveChanges();
+        
+        var (name, mobile) = _accountAcl.
+            GetAccountBy(order.AccountId);
+
+        _smsService.Send(mobile,
+            $"{name} گرامی سفارش شما با شماره پیگیری" +
+            $" {issueTrackingNo} با موفقیت پرداخت شد و ارسال خواهد شد.");
+        
+        return issueTrackingNo;
     }
 
     public void Cancel(long id)

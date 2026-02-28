@@ -1,6 +1,8 @@
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using _0_Framework.Application;
+using _0_Framework.Application.Email;
+using _0_Framework.Application.Sms;
 using _0_Framework.Application.ZarinPal;
 using _0_Framework.Infrastructure;
 using AccountManagement.Infrastructure.Configuration;
@@ -46,6 +48,8 @@ builder.Services.AddTransient<IFileUploader, FileUploader>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 builder.Services.AddTransient<IAuthHelper, AuthHelper>();
 builder.Services.AddTransient<IZarinPalFactory, ZarinPalFactory>();
+builder.Services.AddTransient<ISmsService, SmsService>();
+builder.Services.AddTransient<IEmailService, EmailService>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -71,6 +75,13 @@ builder.Services.AddAuthorizationBuilder()
         policy.RequireRole(new List<string> { Roles.Administrator }))
     .AddPolicy("Account", policy =>
         policy.RequireRole(new List<string> { Roles.Administrator }));
+
+builder.Services.AddCors(option =>
+    option.AddPolicy("MyPolicy", configure =>
+        configure
+            .WithOrigins("https://localhost:5002")
+            .AllowAnyHeader()
+            .AllowAnyMethod()));
 
 builder.Services.AddRazorPages()
     .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
@@ -110,4 +121,7 @@ app.MapStaticAssets();
 app.MapRazorPages().WithStaticAssets();
 
 app.MapDefaultControllerRoute();
+
+app.UseCors("MyPolicy");
+
 app.Run();
