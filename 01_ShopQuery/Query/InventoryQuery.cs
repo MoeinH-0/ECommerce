@@ -36,7 +36,7 @@ public class InventoryQuery : IInventoryQuery
 
         return new StockStatus
         {
-            IsStock = true,
-        }; 
+            IsStock = true
+        };
     }
 }

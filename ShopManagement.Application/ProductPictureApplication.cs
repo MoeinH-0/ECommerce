@@ -7,9 +7,9 @@ namespace ShopManagement.Application;
 
 public class ProductPictureApplication : IProductPictureApplication
 {
+    private readonly IFileUploader _fileUploader;
     private readonly IProductPictureRepository _productPictureRepository;
     private readonly IProductRepository _productRepository;
-    private readonly IFileUploader _fileUploader;
 
     public ProductPictureApplication(IProductPictureRepository productPictureRepository,
         IProductRepository productRepository, IFileUploader fileUploader)
@@ -29,7 +29,7 @@ public class ProductPictureApplication : IProductPictureApplication
 
         var productPicture = new ProductPicture(command.ProductId,
             picturePath, command.PictureAlt, command.PictureTitle);
-        
+
         _productPictureRepository.Create(productPicture);
         _productPictureRepository.SaveChanges();
         return operation.Succeeded();
@@ -40,13 +40,13 @@ public class ProductPictureApplication : IProductPictureApplication
         var operation = new OperationResult();
         var productPicture =
             _productPictureRepository.GetWithProductAndCategory(command.Id);
-        
+
         if (productPicture == null)
             return operation.Failed(ApplicationMessages.RecordNotFound);
-        
+
         var path = $"{productPicture.Product.Category.Slug}//" +
                    $"{productPicture.Product.Slug}";
-        
+
         var picturePath = _fileUploader.Upload(command.Picture, path);
 
         productPicture.Edit(command.ProductId, picturePath, command.PictureAlt, command.PictureTitle);

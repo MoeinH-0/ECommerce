@@ -8,8 +8,8 @@ namespace _01_ShopQuery.Query;
 
 public class CartCalculatorService : ICartCalculatorService
 {
-    private readonly DiscountContext _discountContext;
     private readonly IAuthHelper _authHelper;
+    private readonly DiscountContext _discountContext;
 
     public CartCalculatorService(DiscountContext discountContext,
         IAuthHelper authHelper)
@@ -23,8 +23,7 @@ public class CartCalculatorService : ICartCalculatorService
         var result = new Cart();
         var currentAccountRole = _authHelper.CurrentAccountRole();
 
-        var discounts = currentAccountRole == Roles.ColleagueUser ?
-                GetColleagueDiscounts() : GetCustomerDiscounts();
+        var discounts = currentAccountRole == Roles.ColleagueUser ? GetColleagueDiscounts() : GetCustomerDiscounts();
 
         foreach (var cartItem in cartItems)
         {
@@ -33,7 +32,7 @@ public class CartCalculatorService : ICartCalculatorService
 
             if (discount != null)
                 cartItem.DiscountRate = discount.DiscountRate;
-    
+
             result.Add(cartItem);
         }
 

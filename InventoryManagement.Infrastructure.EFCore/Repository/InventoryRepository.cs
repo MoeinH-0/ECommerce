@@ -9,9 +9,10 @@ namespace InventoryManagement.Infrastructure.EFCore.Repository;
 
 public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRepository
 {
-    private readonly ShopContext _shopContext;
-    private readonly InventoryContext _inventoryContext;
     private readonly AccountContext _accountContext;
+    private readonly InventoryContext _inventoryContext;
+    private readonly ShopContext _shopContext;
+
     public InventoryRepository(InventoryContext context,
         ShopContext shopContext, AccountContext accountContext) : base(context)
     {
@@ -38,7 +39,7 @@ public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRe
     public List<InventoryViewModel> Search(InventorySearchModel searchModel)
     {
         var product = _shopContext.Products.Select(x => new { x.Id, x.Name }).ToList();
-        
+
         var query = _inventoryContext.Inventory.Select(x => new InventoryViewModel
         {
             Id = x.Id,
@@ -47,20 +48,17 @@ public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRe
             ProductId = x.ProductId,
             CurrentCount = x.CalculateCurrentCount()
         });
-        
+
         if (searchModel.ProductId > 0)
             query = query.Where(x => x.ProductId == searchModel.ProductId);
 
         if (searchModel.InStock)
             query = query.Where(x => !x.InStock);
-        
+
         var inventory = query.OrderByDescending(x => x.Id).ToList();
-        
-        inventory.ForEach(item =>
-        {
-            item.Product = product.FirstOrDefault(x => x.Id == item.ProductId)?.Name;
-        });
-        
+
+        inventory.ForEach(item => { item.Product = product.FirstOrDefault(x => x.Id == item.ProductId)?.Name; });
+
         return inventory;
     }
 
@@ -72,8 +70,8 @@ public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRe
 
         var inventory = _inventoryContext.Inventory
             .FirstOrDefault(x => x.Id == inventoryId)!;
-        
-        var operations =inventory.Operations
+
+        var operations = inventory.Operations
             .Select(x => new InventoryOperationViewModel
             {
                 CurrentCount = x.CurrentCount,
@@ -85,11 +83,10 @@ public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRe
                 OperatorId = x.OperatorId,
                 OrderId = x.OrderId
             }).OrderByDescending(x => x.Id).ToList();
-        
-        foreach(var operation in operations)
-            operation.Operator = accounts.
-                FirstOrDefault(x => x.Id == operation.OperatorId)?.FullName;
-        
+
+        foreach (var operation in operations)
+            operation.Operator = accounts.FirstOrDefault(x => x.Id == operation.OperatorId)?.FullName;
+
         return operations;
     }
 }

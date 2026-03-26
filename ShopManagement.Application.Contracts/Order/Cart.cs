@@ -17,7 +17,7 @@ public class Cart
     {
         Items.Add(cartItem);
     }
-    
+
     public void SetPaymentMethod(int methodId)
     {
         PaymentMethod = methodId;

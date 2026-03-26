@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using _0_Framework.Application;
+﻿using _0_Framework.Application;
 using AccountManagement.Application.Contracts.Role;
 using AccountManagement.Domain.RoleAgg;
 
@@ -43,7 +42,7 @@ public class RoleApplication : IRoleApplication
         var permissions = new List<Permission>();
         command.Permissions.ForEach(code =>
             permissions.Add(new Permission(code)));
-        
+
         role.Edit(command.Name, permissions);
 
         _roleRepository.SaveChanges();

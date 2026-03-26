@@ -50,7 +50,7 @@ public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, 
     public string GetSlugById(long id)
     {
         return _context.ProductCategories
-            .Select(x => new {x.Id, x.Slug}).FirstOrDefault(x => x.Id == id)!.Slug;
+            .Select(x => new { x.Id, x.Slug }).FirstOrDefault(x => x.Id == id)!.Slug;
     }
 
     public List<ProductCategoryViewModel> GetProductCategories()

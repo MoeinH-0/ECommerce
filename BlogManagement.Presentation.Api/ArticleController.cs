@@ -13,7 +13,7 @@ public class ArticleController
     {
         _articleQuery = articleQuery;
     }
-    
+
     [HttpGet]
     public List<ArticleQueryModel> GetLatestArticles()
     {

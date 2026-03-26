@@ -8,7 +8,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository;
 
 public class AccountRepository : RepositoryBase<long, Account>, IAccountRepository
 {
-    AccountContext _context;
+    private readonly AccountContext _context;
 
     public AccountRepository(AccountContext context) : base(context)
     {

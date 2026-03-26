@@ -6,6 +6,7 @@ using ShopManagement.Application.Contracts.Product;
 
 namespace ServiceHost.Areas.Administration.Pages.Discounts.ColleagueDiscounts;
 
+//[Authorize(Roles = Roles.Administator)]
 public class IndexModel : PageModel
 {
     private readonly IColleagueDiscountApplication _colleagueDiscountApplication;

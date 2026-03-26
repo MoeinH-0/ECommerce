@@ -9,13 +9,13 @@ namespace ShopManagement.Application;
 
 public class OrderApplication : IOrderApplication
 {
+    private readonly IShopAccountAcl _accountAcl;
     private readonly IAuthHelper _authHelper;
     private readonly IConfiguration _configuration;
     private readonly IOrderRepository _orderRepository;
     private readonly IShopInventoryAcl _shopInventoryAcl;
     private readonly ISmsService _smsService;
-    private readonly IShopAccountAcl _accountAcl;
-    
+
     public OrderApplication(IOrderRepository orderRepository,
         IAuthHelper authHelper, IConfiguration configuration,
         IShopInventoryAcl shopInventoryAcl, ISmsService smsService, IShopAccountAcl accountAcl)
@@ -61,14 +61,13 @@ public class OrderApplication : IOrderApplication
             return "";
 
         _orderRepository.SaveChanges();
-        
-        var (name, mobile) = _accountAcl.
-            GetAccountBy(order.AccountId);
+
+        var (name, mobile) = _accountAcl.GetAccountBy(order.AccountId);
 
         _smsService.Send(mobile,
             $"{name} گرامی سفارش شما با شماره پیگیری" +
             $" {issueTrackingNo} با موفقیت پرداخت شد و ارسال خواهد شد.");
-        
+
         return issueTrackingNo;
     }
 

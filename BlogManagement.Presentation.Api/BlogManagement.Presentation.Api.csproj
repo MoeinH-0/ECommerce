@@ -8,11 +8,11 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
-        <PackageReference Include="Microsoft.OpenApi" Version="3.3.1" />
+        <PackageReference Include="Microsoft.OpenApi" Version="3.3.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\01_ShopQuery\01_ShopQuery.csproj" />
+        <ProjectReference Include="..\01_ShopQuery\01_ShopQuery.csproj"/>
     </ItemGroup>
 
 </Project>

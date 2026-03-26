@@ -1,3 +1,4 @@
+using _0_Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,14 +15,16 @@ public class IndexModel : PageModel
     public List<ProductViewModel> Products;
     public ProductSearchModel SearchModel;
 
-    public IndexModel(IProductApplication ProductApplication, IProductCategoryApplication productCategoryApplication)
+    public IndexModel(IProductApplication productApplication,
+        IProductCategoryApplication productCategoryApplication)
     {
-        _productApplication = ProductApplication;
+        _productApplication = productApplication;
         _productCategoryApplication = productCategoryApplication;
     }
 
     [TempData] public string Message { get; set; }
 
+    [NeedsPermission(ShopPermissions.ListProducts)]
     public void OnGet(ProductSearchModel searchModel)
     {
         ProductCategories = new SelectList(_productCategoryApplication.GetProductCategories(), "Id", "Name");
@@ -37,6 +40,7 @@ public class IndexModel : PageModel
         return Partial("./Create", command);
     }
 
+    [NeedsPermission(ShopPermissions.CreateProduct)]
     public JsonResult OnPostCreate(CreateProduct command)
     {
         var result = _productApplication.Create(command);
@@ -50,10 +54,10 @@ public class IndexModel : PageModel
         return Partial("Edit", product);
     }
 
+    [NeedsPermission(ShopPermissions.EditProduct)]
     public JsonResult OnPostEdit(EditProduct command)
     {
         var result = _productApplication.Edit(command);
         return new JsonResult(result);
     }
-    
 }

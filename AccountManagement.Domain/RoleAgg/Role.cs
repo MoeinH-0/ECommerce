@@ -5,9 +5,6 @@ namespace AccountManagement.Domain.RoleAgg;
 
 public class Role : EntityBase
 {
-    public string Name { get; private set; }
-    public List<Account> Accounts { get; private set; }
-    public List<Permission> Permissions { get; private set; }
     public Role(string name, List<Permission> permissions)
     {
         Name = name;
@@ -15,11 +12,17 @@ public class Role : EntityBase
         Accounts = [];
     }
 
+    protected Role()
+    {
+    }
+
+    public string Name { get; private set; }
+    public List<Account> Accounts { get; private set; }
+    public List<Permission> Permissions { get; private set; }
+
     public void Edit(string name, List<Permission> permissions)
     {
         Name = name;
         Permissions = permissions;
     }
-    
-    protected Role(){}
 }

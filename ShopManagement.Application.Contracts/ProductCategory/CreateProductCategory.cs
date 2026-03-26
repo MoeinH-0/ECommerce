@@ -25,7 +25,7 @@ public class CreateProductCategory
     public string Keywords { get; set; }
 
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
-    public  string MetaDescription { get; set; }
+    public string MetaDescription { get; set; }
 
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
     public string Slug { get; set; }

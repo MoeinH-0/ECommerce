@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommentManagement.Infrastructure.EFCore;
 
-public class  CommentContext : DbContext
+public class CommentContext : DbContext
 {
     public CommentContext(DbContextOptions<CommentContext> options) : base(options)
     {

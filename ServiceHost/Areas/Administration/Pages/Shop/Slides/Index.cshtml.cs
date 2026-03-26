@@ -48,7 +48,7 @@ public class IndexModel : PageModel
     public IActionResult OnGetRemove(long id)
     {
         var result = _slideApplication.Remove(id);
-        if (result.IsSucceeded)
+        if (result.IsSuccedded)
             return RedirectToPage("./Index");
 
         Message = result.Message;
@@ -58,7 +58,7 @@ public class IndexModel : PageModel
     public IActionResult OnGetRestore(long id)
     {
         var result = _slideApplication.Restore(id);
-        if (result.IsSucceeded)
+        if (result.IsSuccedded)
             return RedirectToPage("./Index");
 
         Message = result.Message;

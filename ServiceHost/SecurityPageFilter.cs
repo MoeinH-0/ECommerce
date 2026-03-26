@@ -26,11 +26,10 @@ public class SecurityPageFilter : IPageFilter
 
         if (handlerPermission == null)
             return;
-        
+
         var accountPermissions = _authHelper.GetPermissions();
         if (accountPermissions.All(x => x != handlerPermission.Permission))
             context.HttpContext.Response.Redirect("/Account");
-            
     }
 
     public void OnPageHandlerExecuted(PageHandlerExecutedContext context)

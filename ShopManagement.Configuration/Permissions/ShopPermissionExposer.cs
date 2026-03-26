@@ -14,7 +14,7 @@ public class ShopPermissionExposer : IPermissionExposer
                     new(ShopPermission.ListProduct, "List Products"),
                     new(ShopPermission.SearchProduct, "Search Products"),
                     new(ShopPermission.CreateProduct, "Create Product"),
-                    new(ShopPermission.EditProduct, "Edit Product"),
+                    new(ShopPermission.EditProduct, "Edit Product")
                 }
             },
             {
@@ -23,7 +23,7 @@ public class ShopPermissionExposer : IPermissionExposer
                     new(ShopPermission.SearchProductCategory, "Search Product Categories"),
                     new(ShopPermission.ListProductCategory, "List Product Categories"),
                     new(ShopPermission.CreateProductCategory, "Create Product Category"),
-                    new(ShopPermission.EditProductCategory, "Edit Product Category"),
+                    new(ShopPermission.EditProductCategory, "Edit Product Category")
                 }
             }
         };

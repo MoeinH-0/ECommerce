@@ -5,15 +5,6 @@ namespace AccountManagement.Domain.AccountAgg;
 
 public class Account : EntityBase
 {
-    public string FullName { get; private set; }
-    public string Username { get; private set; }
-    public string Password { get; private set; }
-    public string Mobile { get; private set; }
-    public long RoleId { get; private set; }
-    public Role Role { get; private set; }
-    public string ProfilePhoto { get; private set; }
-    
-    
     public Account(string fullName, string username, string password,
         string mobile, long roleId, string profilePhoto)
     {
@@ -24,12 +15,20 @@ public class Account : EntityBase
         RoleId = roleId;
         if (roleId == 0)
             RoleId = 2;
-        
+
         if (string.IsNullOrWhiteSpace(profilePhoto))
             ProfilePhoto = profilePhoto;
     }
-    
-    
+
+    public string FullName { get; private set; }
+    public string Username { get; private set; }
+    public string Password { get; private set; }
+    public string Mobile { get; private set; }
+    public long RoleId { get; private set; }
+    public Role Role { get; private set; }
+    public string ProfilePhoto { get; private set; }
+
+
     public void Edit(string fullName, string username,
         string mobile, long roleId, string profilePhoto)
     {
@@ -40,7 +39,7 @@ public class Account : EntityBase
         if (string.IsNullOrWhiteSpace(profilePhoto))
             ProfilePhoto = profilePhoto;
     }
-    
+
     public void ChangePassword(string password)
     {
         Password = password;

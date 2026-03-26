@@ -37,7 +37,7 @@ public class RoleRepository : RepositoryBase<long, Role>, IRoleRepository
 
         role?.Permissions = role.MappedPermissions
             .Select(x => x.Code).ToList();
-        
+
         return role;
     }
 

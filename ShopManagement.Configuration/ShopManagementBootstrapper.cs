@@ -46,7 +46,7 @@ public static class ShopManagementBootstrapper
 
         services.AddSingleton<ICartService, CartService>();
         services.AddTransient<IShopInventoryAcl, ShopInventoryAcl>();
-        
+
         services.AddTransient<ISlideQuery, SlideQuery>();
         services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
         services.AddTransient<IProductQuery, ProductQuery>();

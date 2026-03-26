@@ -8,8 +8,9 @@ namespace ShopManagement.Application;
 public class ProductApplication : IProductApplication
 {
     private readonly IFileUploader _fileUploader;
-    private readonly IProductRepository _repository;
     private readonly IProductCategoryRepository _productCategoryRepository;
+    private readonly IProductRepository _repository;
+
     public ProductApplication(IProductRepository repository,
         IFileUploader fileUploader, IProductCategoryRepository productCategoryRepository)
     {
@@ -24,10 +25,10 @@ public class ProductApplication : IProductApplication
         if (_repository.Exists(x => x.Name == command.Name))
             return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
-        var categorySlug = _productCategoryRepository.GetSlugById(command.CategoryId);  
+        var categorySlug = _productCategoryRepository.GetSlugById(command.CategoryId);
         var path = $"{categorySlug}//{command.Slug.Slugify()}";
         var picturePath = _fileUploader.Upload(command.Picture, path);
-            
+
         var product = new Product
         (command.Name, command.Description, picturePath,
             command.PictureAlt, command.PictureTitle, command.Keywords,
@@ -49,7 +50,7 @@ public class ProductApplication : IProductApplication
         var product = _repository.GetProductWithCategory(command.Id);
         if (product == null)
             return operationResult.Failed(ApplicationMessages.RecordNotFound);
-        
+
         var path = $"{product.Category.Slug}//{command.Slug.Slugify()}";
         var picturePath = _fileUploader.Upload(command.Picture, path);
 

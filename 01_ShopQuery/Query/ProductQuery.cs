@@ -13,10 +13,10 @@ namespace _01_ShopQuery.Query;
 
 public class ProductQuery : IProductQuery
 {
+    private readonly CommentContext _commentContext;
     private readonly ShopContext _context;
     private readonly DiscountContext _discountContext;
     private readonly InventoryContext _inventoryContext;
-    private readonly CommentContext _commentContext;
 
     public ProductQuery(ShopContext context, InventoryContext inventoryContext,
         DiscountContext discountContext, CommentContext commentContext)
@@ -195,7 +195,7 @@ public class ProductQuery : IProductQuery
             product.DiscountRate = discountRate;
             product.DiscountExpireDate = discount.EndDate.ToDiscountFormat();
             product.HasDiscount = discountRate > 0;
-            var discountAmount = Math.Round((price * discountRate) / 100);
+            var discountAmount = Math.Round(price * discountRate / 100);
             product.PriceWithDiscount = (price - discountAmount).ToMoney();
         }
 
@@ -210,8 +210,8 @@ public class ProductQuery : IProductQuery
         {
             var inventory = inventories.FirstOrDefault(x =>
                 x.ProductId == cartItem.Id && x.InStock);
-            
-            if (inventory != null)      
+
+            if (inventory != null)
                 cartItem.IsInStock = cartItem.Count <= inventory.CalculateCurrentCount();
         }
 

@@ -17,7 +17,7 @@ public class OrderMapping : IEntityTypeConfiguration<Order>
             navigationBuilder.ToTable("OrderItems");
             navigationBuilder.HasKey(x => x.Id);
             navigationBuilder.WithOwner(x => x.Order)
-                .HasForeignKey(x => x.OrderId); 
+                .HasForeignKey(x => x.OrderId);
         });
     }
 }

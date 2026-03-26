@@ -20,7 +20,7 @@ public class CreateSlide
 
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
     public string PictureTitle { get; set; }
-    
+
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
     public string Title { get; set; }
 

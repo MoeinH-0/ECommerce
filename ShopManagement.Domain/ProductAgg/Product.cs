@@ -54,5 +54,4 @@ public class Product : EntityBase
         MetaDescription = metaDescription;
         Slug = slug;
     }
-
 }

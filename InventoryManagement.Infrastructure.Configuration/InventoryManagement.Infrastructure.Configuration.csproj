@@ -11,9 +11,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\01_ShopQuery\01_ShopQuery.csproj" />
-      <ProjectReference Include="..\InventoryManagement.Application\InventoryManagement.Application.csproj" />
-      <ProjectReference Include="..\InventoryManagement.Infrastructure.EFCore\InventoryManagement.Infrastructure.EFCore.csproj" />
+        <ProjectReference Include="..\01_ShopQuery\01_ShopQuery.csproj"/>
+        <ProjectReference Include="..\InventoryManagement.Application\InventoryManagement.Application.csproj"/>
+        <ProjectReference Include="..\InventoryManagement.Infrastructure.EFCore\InventoryManagement.Infrastructure.EFCore.csproj"/>
     </ItemGroup>
-    
+
 </Project>

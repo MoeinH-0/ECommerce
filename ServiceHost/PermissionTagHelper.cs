@@ -8,13 +8,13 @@ public class PermissionTagHelper : TagHelper
 {
     private readonly IAuthHelper _authHelper;
 
-    public int Permission { get; set; }
-
 
     public PermissionTagHelper(IAuthHelper authHelper)
     {
         _authHelper = authHelper;
     }
+
+    public int Permission { get; set; }
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {

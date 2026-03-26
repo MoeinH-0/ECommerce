@@ -17,6 +17,7 @@ public class RegisterAccount
 
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
     public string Mobile { get; set; }
+
     public long RoleId { get; set; }
 
     public IFormFile ProfilePhoto { get; set; }

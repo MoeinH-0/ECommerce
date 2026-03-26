@@ -20,7 +20,7 @@ public static class AccountManagementBootstrapper
         service.AddTransient<IRoleApplication, RoleApplication>();
         service.AddTransient<IRoleRepository, RoleRepository>();
 
-        service.AddDbContext<AccountContext>(x => 
+        service.AddDbContext<AccountContext>(x =>
             x.UseNpgsql(connectionString));
     }
 }

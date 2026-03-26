@@ -21,6 +21,7 @@ public class Inventory : EntityBase
         ProductId = productId;
         UnitPrice = unitPrice;
     }
+
     public long CalculateCurrentCount()
     {
         return Operations.Last().CurrentCount;

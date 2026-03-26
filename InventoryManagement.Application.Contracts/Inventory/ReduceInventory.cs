@@ -2,12 +2,6 @@
 
 public class ReduceInventory
 {
-    public long ProductId { get; set; }
-    public long Count { get; set; }
-    public string Description { get; set; }
-    public long OrderId { get; set; }
-    public long InventoryId { get; set; }
-
     public ReduceInventory(long productId, long count,
         string description, long orderId)
     {
@@ -16,4 +10,10 @@ public class ReduceInventory
         Description = description;
         OrderId = orderId;
     }
+
+    public long ProductId { get; set; }
+    public long Count { get; set; }
+    public string Description { get; set; }
+    public long OrderId { get; set; }
+    public long InventoryId { get; set; }
 }

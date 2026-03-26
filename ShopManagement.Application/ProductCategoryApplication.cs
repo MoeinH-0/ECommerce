@@ -6,8 +6,8 @@ namespace ShopManagement.Application;
 
 public class ProductCategoryApplication : IProductCategoryApplication
 {
-    private readonly IProductCategoryRepository _repository;
     private readonly IFileUploader _fileUploader;
+    private readonly IProductCategoryRepository _repository;
 
     public ProductCategoryApplication(IProductCategoryRepository repository, IFileUploader fileUploader)
     {
@@ -22,7 +22,7 @@ public class ProductCategoryApplication : IProductCategoryApplication
             return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
         var pictureName = _fileUploader.Upload(command.Picture, command.Slug.Slugify());
-        
+
         var productCategory = new ProductCategory
         (command.Name, command.Description, pictureName,
             command.PictureAlt, command.PictureTitle, command.Keywords,

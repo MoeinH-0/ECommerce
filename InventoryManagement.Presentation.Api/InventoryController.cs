@@ -10,7 +10,7 @@ public class InventoryController : ControllerBase
 {
     private readonly IInventoryApplication _inventoryApplication;
     private readonly IInventoryQuery _inventoryQuery;
-    
+
     public InventoryController(IInventoryApplication inventoryApplication,
         IInventoryQuery inventoryQuery)
     {
@@ -19,11 +19,11 @@ public class InventoryController : ControllerBase
     }
 
     [HttpGet("{id:long}")]
-    public List<InventoryOperationViewModel> GetOperationsBy([FromRoute]long id)
+    public List<InventoryOperationViewModel> GetOperationsBy([FromRoute] long id)
     {
         return _inventoryApplication.GetOperationLog(id);
     }
-    
+
     [HttpPost]
     public StockStatus ChekStock([FromBody] IsInStock command)
     {

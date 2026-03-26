@@ -6,13 +6,13 @@ namespace AccountManagement.Infrastructure.EFCore;
 
 public class AccountContext : DbContext
 {
-    public DbSet<Account> Accounts { get; set; }
-    public DbSet<Role> Roles { get; set; }
-    
     public AccountContext(DbContextOptions<AccountContext> options) : base(options)
     {
     }
-    
+
+    public DbSet<Account> Accounts { get; set; }
+    public DbSet<Role> Roles { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         var assembly = typeof(AccountContext).Assembly;

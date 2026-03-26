@@ -10,8 +10,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository;
 
 public class OrderRepository : RepositoryBase<long, Order>, IOrderRepository
 {
-    private readonly ShopContext _shopContext;
     private readonly AccountContext _accountContext;
+    private readonly ShopContext _shopContext;
 
     public OrderRepository(ShopContext shopContext,
         AccountContext accountContext) : base(shopContext)
@@ -71,7 +71,7 @@ public class OrderRepository : RepositoryBase<long, Order>, IOrderRepository
     {
         var products = _shopContext.Products
             .Select(x => new { x.Id, x.Name }).ToList();
-        
+
         var order = _shopContext.Orders
             .Include(x => x.Items)
             .FirstOrDefault(x => x.Id == orderId);
@@ -88,8 +88,8 @@ public class OrderRepository : RepositoryBase<long, Order>, IOrderRepository
                 ProductId = x.ProductId,
                 UnitPrice = x.UnitPrice
             }).ToList();
-        
-        
+
+
         items.ForEach(item =>
             item.Product = products.FirstOrDefault
                 (p => p.Id == item.ProductId)!.Name);

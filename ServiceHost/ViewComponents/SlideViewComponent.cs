@@ -1,5 +1,4 @@
-﻿using _01_ShopQuery.Contracts.Slide;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.ViewComponents;
 

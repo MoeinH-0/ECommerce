@@ -108,10 +108,12 @@ pnpm-debug.log*
 #############################################
 # wwwroot handling (IMPORTANT)
 #############################################
-wwwroot/**
+# Ignore all files inside any wwwroot folder
+**/wwwroot/*
 
-!wwwroot/
-!wwwroot/.gitkeep
+# Un-ignore the .gitkeep file so the empty folder is tracked
+!**/wwwroot/.gitkeep
+
 
 #############################################
 # Misc

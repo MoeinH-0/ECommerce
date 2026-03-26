@@ -6,16 +6,15 @@ using CommentManagement.Infrastructure.EFCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CommentManagement.Infrastructure.Configuration
-{
-    public static class CommentManagementBootstrapper
-    {
-        public static void Configure(IServiceCollection services, string connectionString)
-        {
-            services.AddTransient<ICommentRepository, CommentRepository>();
-            services.AddTransient<ICommentApplication, CommentApplication>();
+namespace CommentManagement.Infrastructure.Configuration;
 
-            services.AddDbContext<CommentContext>(x => x.UseNpgsql(connectionString));
-        }
+public static class CommentManagementBootstrapper
+{
+    public static void Configure(IServiceCollection services, string connectionString)
+    {
+        services.AddTransient<ICommentRepository, CommentRepository>();
+        services.AddTransient<ICommentApplication, CommentApplication>();
+
+        services.AddDbContext<CommentContext>(x => x.UseNpgsql(connectionString));
     }
 }

@@ -1,35 +1,31 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿namespace ShopManagement.Application.Contracts;
 
-namespace ShopManagement.Application.Contracts
+public class PaymentMethod
 {
-    public class PaymentMethod
+    private PaymentMethod(int id, string name, string description)
     {
-        public int Id { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
+        Id = id;
+        Name = name;
+        Description = description;
+    }
 
-        private PaymentMethod(int id, string name, string description)
-        {
-            Id = id;
-            Name = name;
-            Description = description;
-        }
+    public int Id { get; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
 
-        public static List<PaymentMethod> GetList()
+    public static List<PaymentMethod> GetList()
+    {
+        return new List<PaymentMethod>
         {
-            return new List<PaymentMethod>
-            {
-                new PaymentMethod(1, "پرداخت اینترنتی",
-                    "در مدل شما به درگاه پرداخت اینترنتی هدایت شده و درلحظه پرداخت وجه را انجام خواهید داد."),
-                new PaymentMethod(2, "پرداخت نقدی",
-                    "در این مدل، ابتدا سفارش ثبت شده و سپس وجه به صورت نقدی در زمان تحویل کالا، دریافت خواهد شد.")
-            };
-        }
+            new(1, "پرداخت اینترنتی",
+                "در مدل شما به درگاه پرداخت اینترنتی هدایت شده و درلحظه پرداخت وجه را انجام خواهید داد."),
+            new(2, "پرداخت نقدی",
+                "در این مدل، ابتدا سفارش ثبت شده و سپس وجه به صورت نقدی در زمان تحویل کالا، دریافت خواهد شد.")
+        };
+    }
 
-        public static PaymentMethod GetBy(long id)
-        {
-            return GetList().FirstOrDefault(x => x.Id == id)!;
-        }
+    public static PaymentMethod GetBy(long id)
+    {
+        return GetList().FirstOrDefault(x => x.Id == id)!;
     }
 }

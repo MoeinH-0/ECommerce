@@ -12,7 +12,11 @@ public class InventoryOperation
         Description = description;
         OrderId = orderId;
         InventoryId = inventoryId;
-        OperationDate =  DateTime.UtcNow;
+        OperationDate = DateTime.UtcNow;
+    }
+
+    protected InventoryOperation()
+    {
     }
 
     public long Id { get; private set; }
@@ -25,6 +29,4 @@ public class InventoryOperation
     public long OrderId { get; private set; }
     public long InventoryId { get; private set; }
     public Inventory Inventory { get; private set; }
-    
-    protected InventoryOperation(){}
 }

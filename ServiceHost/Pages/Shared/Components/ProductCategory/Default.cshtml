@@ -1,4 +1,4 @@
-﻿@model List<_01_ShopQuery.Contracts.ProductCategory.ProductCategoryQueryModel>
+﻿@model List<_01_LampshadeQuery.Contracts.ProductCategory.ProductCategoryQueryModel>
 
 <div class="category-area section-space">
     <div class="container">
@@ -13,8 +13,8 @@
                                 <div class="single-category-item">
                                     <div class="single-category-item__image">
                                         <a asp-page="/ProductCategory" asp-route-id="@item.Slug">
-                                            <img src="@item.Picture" class="img-fluid" alt="@item.PictureAlt"
-                                                 title="@item.PictureTitle"/>
+                                            <img src="~/ProductPictures/@item.Picture" class="img-fluid"
+                                                 alt="@item.PictureAlt" title="@item.PictureTitle"/>
                                         </a>
                                     </div>
                                     <div class="single-category-item__content">

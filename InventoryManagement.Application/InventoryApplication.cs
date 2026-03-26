@@ -1,7 +1,6 @@
 ﻿using _0_Framework.Application;
 using InventoryManagement.Application.Contracts.Inventory;
 using InventoryManagement.Domain.InventoryAgg;
-using InventoryManagement.Infrastructure.EFCore.Repository;
 
 namespace InventoryManagement.Application;
 
@@ -39,7 +38,7 @@ public class InventoryApplication : IInventoryApplication
         if (_repository.Exists(x => x.ProductId == command.ProductId
                                     && x.Id != command.Id))
             return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
-        
+
         inventory.Edit(command.ProductId, command.UnitPrice);
         _repository.SaveChanges();
 

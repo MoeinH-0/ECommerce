@@ -6,12 +6,11 @@ namespace InventoryManagement.Infrastructure.EFCore;
 
 public class InventoryContext : DbContext
 {
-    public DbSet<Inventory> Inventory { get; set; }
-
     public InventoryContext(DbContextOptions<InventoryContext> options) : base(options)
     {
-        
     }
+
+    public DbSet<Inventory> Inventory { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
