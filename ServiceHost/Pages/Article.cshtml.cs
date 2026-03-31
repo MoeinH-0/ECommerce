@@ -1,4 +1,7 @@
+using _01_ShopQuery.Contracts.Article;
+using _01_ShopQuery.Contracts.ArticleCategory;
 using CommentManagement.Application.Contracts.Comment;
+using CommentManagement.Infrastructure.EFCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -24,7 +27,7 @@ public class ArticleModel : PageModel
     public void OnGet(string id)
     {
         Article = _articleQuery.GetArticleDetails(id);
-        LatestArticles = _articleQuery.LatestArticles();
+        LatestArticles = _articleQuery.GetLatestArticles();
         ArticleCategories = _articleCategoryQuery.GetArticleCategories();
     }
 

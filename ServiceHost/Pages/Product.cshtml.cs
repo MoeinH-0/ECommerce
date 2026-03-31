@@ -1,4 +1,6 @@
+using _01_ShopQuery.Contracts.Product;
 using CommentManagement.Application.Contracts.Comment;
+using CommentManagement.Infrastructure.EFCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -18,7 +20,7 @@ public class ProductModel : PageModel
 
     public void OnGet(string id)
     {
-        Product = _productQuery.GetProductDetails(id);
+        Product = _productQuery.GetDetails(id);
     }
 
     public IActionResult OnPost(AddComment command, string productSlug)

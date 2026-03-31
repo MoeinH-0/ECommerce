@@ -84,12 +84,12 @@
                                            href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.Id })">
                                             <i class="fa fa-edit"></i> ویرایش
                                         </a>
-                                        <a permission="@InventoryPermissions.Increase"
+                                        <a permission="@InventoryPermissions.IncreaseInventory"
                                            class="btn btn-success waves-effect waves-light m-b-5"
                                            href="#showmodal=@Url.Page("./Index", "Increase", new { id = item.Id })">
                                             <i class="fa fa-plus"></i> افزایش موجودی
                                         </a>
-                                        <a permission="@InventoryPermissions.Reduce"
+                                        <a permission="@InventoryPermissions.ReduceInventory"
                                            class="btn btn-danger waves-effect waves-light m-b-5"
                                            href="#showmodal=@Url.Page("./Index", "Reduce", new { id = item.Id })">
                                             <i class="fa fa-minus"></i> کاهش موجودی

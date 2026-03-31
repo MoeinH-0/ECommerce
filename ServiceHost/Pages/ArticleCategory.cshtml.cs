@@ -1,3 +1,5 @@
+using _01_ShopQuery.Contracts.Article;
+using _01_ShopQuery.Contracts.ArticleCategory;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ServiceHost.Pages;
@@ -19,7 +21,7 @@ public class ArticleCategoryModel : PageModel
 
     public void OnGet(string id)
     {
-        LatestArticles = _articleQuery.LatestArticles();
+        LatestArticles = _articleQuery.GetLatestArticles();
         ArticleCategory = _articleCategoryQuery.GetArticleCategory(id);
         ArticleCategories = _articleCategoryQuery.GetArticleCategories();
     }

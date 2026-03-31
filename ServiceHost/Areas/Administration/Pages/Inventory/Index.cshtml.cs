@@ -1,4 +1,5 @@
 using _0_Framework.Infrastructure;
+using InventoryManagement.Application.Contracts.Inventory;
 using InventoryManagement.Infrastructure.Configuration.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -73,7 +74,7 @@ public class IndexModel : PageModel
         return Partial("Increase", command);
     }
 
-    [NeedsPermission(InventoryPermissions.Increase)]
+    [NeedsPermission(InventoryPermissions.IncreaseInventory)]
     public JsonResult OnPostIncrease(IncreaseInventory command)
     {
         var result = _inventoryApplication.Increase(command);
@@ -89,7 +90,7 @@ public class IndexModel : PageModel
         return Partial("Reduce", command);
     }
 
-    [NeedsPermission(InventoryPermissions.Reduce)]
+    [NeedsPermission(InventoryPermissions.ReduceInventory)]
     public JsonResult OnPostReduce(ReduceInventory command)
     {
         var result = _inventoryApplication.Reduce(command);

@@ -28,7 +28,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
             Id = x.Id,
             FullName = x.FullName,
             Mobile = x.Mobile,
-            UserName = x.Username,
+            Username = x.Username,
             RoleId = x.RoleId
         }).FirstOrDefault(x => x.Id == id);
     }
@@ -52,7 +52,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
                 Id = x.Id,
                 FullName = x.FullName,
                 Mobile = x.Mobile,
-                UserName = x.Username,
+                Username = x.Username,
                 Role = x.Role.Name,
                 RoleId = x.RoleId,
                 ProfilePhoto = x.ProfilePhoto,
@@ -63,9 +63,9 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
             query = query.Where
                 (x => x.FullName.Contains(searchModel.FullName));
 
-        if (!string.IsNullOrWhiteSpace(searchModel.UserName))
+        if (!string.IsNullOrWhiteSpace(searchModel.Username))
             query = query.Where
-                (x => x.UserName.Contains(searchModel.UserName));
+                (x => x.Username.Contains(searchModel.Username));
 
         if (!string.IsNullOrWhiteSpace(searchModel.Mobile))
             query = query.Where

@@ -1,9 +1,12 @@
 ﻿using System.Globalization;
 using _0_Framework.Application;
 using _0_Framework.Application.ZarinPal;
+using _01_ShopQuery.Contracts.CartContract;
+using _01_ShopQuery.Contracts.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Nancy.Json;
 using ShopManagement.Application.Contracts.Order;
 
 namespace ServiceHost.Pages;
@@ -38,8 +41,6 @@ public class CheckoutModel : PageModel
         var serializer = new JavaScriptSerializer();
         var value = Request.Cookies[CookieName];
         var cartItems = serializer.Deserialize<List<CartItem>>(value);
-        foreach (var item in cartItems)
-            item.CalculateTotalItemPrice();
 
         Cart = _cartCalculatorService.ComputeCart(cartItems);
         _cartService.Set(Cart);

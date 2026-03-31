@@ -1,3 +1,4 @@
+using _01_ShopQuery.Contracts.ProductCategory;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ServiceHost.Pages;
@@ -14,6 +15,6 @@ public class ProductCategoryModel : PageModel
 
     public void OnGet(string id)
     {
-        ProductCategory = _productCategoryQuery.GetProductCategoryWithProducstsBy(id);
+        ProductCategory = _productCategoryQuery.GetProductCategoryWithProductsBy(id);
     }
 }

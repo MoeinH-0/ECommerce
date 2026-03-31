@@ -1,3 +1,4 @@
+using _01_ShopQuery.Contracts.Product;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ServiceHost.Pages;

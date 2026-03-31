@@ -37,7 +37,7 @@ public class AccountApplication : IAccountApplication
     {
         var operation = new OperationResult();
 
-        if (_accountRepository.Exists(x => x.Username == command.UserName
+        if (_accountRepository.Exists(x => x.Username == command.Username
                                            || x.Mobile == command.Mobile))
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
@@ -45,7 +45,7 @@ public class AccountApplication : IAccountApplication
         var path = "profilePhotos";
         var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
 
-        var account = new Account(command.FullName, command.UserName,
+        var account = new Account(command.FullName, command.Username,
             passwordHash, command.Mobile, command.RoleId, picturePath);
 
         _accountRepository.Create(account);
@@ -62,14 +62,14 @@ public class AccountApplication : IAccountApplication
         if (account == null)
             return operation.Failed(ApplicationMessages.RecordNotFound);
 
-        if (_accountRepository.Exists(x => (x.Username == command.UserName
+        if (_accountRepository.Exists(x => (x.Username == command.Username
                                             || x.Mobile == command.Mobile) && x.Id != command.Id))
             return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
         var path = "profilePhotos";
         var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
 
-        account.Edit(command.FullName, command.UserName,
+        account.Edit(command.FullName, command.Username,
             command.Mobile, command.RoleId, picturePath);
 
         _accountRepository.SaveChanges();

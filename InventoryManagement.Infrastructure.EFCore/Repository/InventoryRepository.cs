@@ -46,7 +46,8 @@ public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRe
             UnitPrice = x.UnitPrice,
             InStock = x.InStock,
             ProductId = x.ProductId,
-            CurrentCount = x.CalculateCurrentCount()
+            CurrentCount = x.CalculateCurrentCount(),
+            CreationDate = x.CreationDate.ToFarsi()
         });
 
         if (searchModel.ProductId > 0)

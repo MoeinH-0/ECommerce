@@ -78,7 +78,7 @@
                                             </div>
                                         </td>
                                         <td class="pro-subtotal">
-                                            <span id="totalItemPrice-@item.Id">@item.TotalItemPrice.ToMoney()</span>
+                                            <span id="totalItemPrice-@item.Id">@item.TotalPrice.ToMoney()</span>
                                         </td>
                                         <td class="pro-remove">
                                             <a asp-page-handler="RemoveFromCart" asp-route-id="@item.Id">

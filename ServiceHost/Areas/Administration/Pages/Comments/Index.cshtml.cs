@@ -25,7 +25,7 @@ public class IndexModel : PageModel
     public IActionResult OnGetCancel(long id)
     {
         var result = _commentApplication.Cancel(id);
-        if (result.IsSuccedded)
+        if (result.IsSucceeded)
             return RedirectToPage("./Index");
 
         Message = result.Message;
@@ -35,7 +35,7 @@ public class IndexModel : PageModel
     public IActionResult OnGetConfirm(long id)
     {
         var result = _commentApplication.Confirm(id);
-        if (result.IsSuccedded)
+        if (result.IsSucceeded)
             return RedirectToPage("./Index");
 
         Message = result.Message;

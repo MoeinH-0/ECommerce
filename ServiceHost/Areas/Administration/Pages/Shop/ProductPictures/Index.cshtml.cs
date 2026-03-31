@@ -59,7 +59,7 @@ public class IndexModel : PageModel
     public IActionResult OnGetRemove(long id)
     {
         var result = _productPictureApplication.Remove(id);
-        if (result.IsSuccedded)
+        if (result.IsSucceeded)
             return RedirectToPage("./Index");
 
         Message = result.Message;
@@ -69,7 +69,7 @@ public class IndexModel : PageModel
     public IActionResult OnGetRestore(long id)
     {
         var result = _productPictureApplication.Restore(id);
-        if (result.IsSuccedded)
+        if (result.IsSucceeded)
             return RedirectToPage("./Index");
 
         Message = result.Message;

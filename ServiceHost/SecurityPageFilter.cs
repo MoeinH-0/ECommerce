@@ -16,7 +16,6 @@ public class SecurityPageFilter : IPageFilter
 
     public void OnPageHandlerSelected(PageHandlerSelectedContext context)
     {
-        throw new NotImplementedException();
     }
 
     public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
@@ -34,6 +33,5 @@ public class SecurityPageFilter : IPageFilter
 
     public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
     {
-        throw new NotImplementedException();
     }
 }

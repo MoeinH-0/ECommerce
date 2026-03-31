@@ -13,9 +13,9 @@ public class AccountModel : PageModel
         _accountApplication = accountApplication;
     }
 
-    [TempData] public string LoginMessage { get; set; }
+    [TempData] public string? LoginMessage { get; set; }
 
-    [TempData] public string RegisterMessage { get; set; }
+    [TempData] public string? RegisterMessage { get; set; }
 
     public void OnGet()
     {
@@ -24,7 +24,7 @@ public class AccountModel : PageModel
     public IActionResult OnPostLogin(Login command)
     {
         var result = _accountApplication.Login(command);
-        if (result.IsSuccedded)
+        if (result.IsSucceeded)
             return RedirectToPage("/Index");
 
         LoginMessage = result.Message;
@@ -40,7 +40,7 @@ public class AccountModel : PageModel
     public IActionResult OnPostRegister(RegisterAccount command)
     {
         var result = _accountApplication.Register(command);
-        if (result.IsSuccedded)
+        if (result.IsSucceeded)
             return RedirectToPage("/Account");
         RegisterMessage = result.Message;
         return RedirectToPage("/Account");

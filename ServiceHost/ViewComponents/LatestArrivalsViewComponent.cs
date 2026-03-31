@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _01_ShopQuery.Contracts.Product;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.ViewComponents;
 

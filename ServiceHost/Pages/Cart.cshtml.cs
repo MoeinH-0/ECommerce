@@ -1,5 +1,7 @@
+using _01_ShopQuery.Contracts.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Nancy.Json;
 using ShopManagement.Application.Contracts.Order;
 
 namespace ServiceHost.Pages;
@@ -21,8 +23,6 @@ public class CartModel : PageModel
         var serializer = new JavaScriptSerializer();
         var value = Request.Cookies[CookieName];
         var cartItems = serializer.Deserialize<List<CartItem>>(value);
-        foreach (var item in cartItems)
-            item.CalculateTotalItemPrice();
 
         CartItems = _productQuery.CheckInventoryStatus(cartItems);
     }
@@ -45,7 +45,6 @@ public class CartModel : PageModel
         var serializer = new JavaScriptSerializer();
         var value = Request.Cookies[CookieName];
         var cartItems = serializer.Deserialize<List<CartItem>>(value);
-        foreach (var item in cartItems) item.TotalItemPrice = item.UnitPrice * item.Count;
 
         CartItems = _productQuery.CheckInventoryStatus(cartItems);
 

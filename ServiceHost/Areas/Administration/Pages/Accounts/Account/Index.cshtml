@@ -26,8 +26,8 @@
             <div class="panel-body">
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.Fullname"></label>
-                        <input class="form-control" asp-for="SearchModel.Fullname" placeholder="نام">
+                        <label class="sr-only" asp-for="SearchModel.FullName"></label>
+                        <input class="form-control" asp-for="SearchModel.FullName" placeholder="نام">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.Username"></label>
@@ -82,7 +82,7 @@
                                         <img src="~/ProductPictures/@item.ProfilePhoto"
                                              style="width: 70px; height: 70px"/>
                                     </td>
-                                    <td>@item.Fullname</td>
+                                    <td>@item.FullName</td>
                                     <td>@item.Username</td>
                                     <td>@item.Mobile</td>
                                     <td>@item.Role</td>

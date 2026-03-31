@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _01_ShopQuery.Contracts.Article;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.ViewComponents;
 
@@ -13,7 +14,7 @@ public class LatestArticlesViewComponent : ViewComponent
 
     public IViewComponentResult Invoke()
     {
-        var articles = _articleQuery.LatestArticles();
+        var articles = _articleQuery.GetLatestArticles();
         return View(articles);
     }
 }

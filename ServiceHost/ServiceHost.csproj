@@ -9,22 +9,27 @@
     <ItemGroup>
         <ProjectReference Include="..\AccountManagement.Infrastructure.Configuration\AccountManagement.Infrastructure.Configuration.csproj"/>
         <ProjectReference Include="..\BlogManagement.Infrastructure.Configuration\BlogManagement.Infrastructure.Configuration.csproj"/>
+        <ProjectReference Include="..\BlogManagement.Presentation.Api\BlogManagement.Presentation.Api.csproj"/>
         <ProjectReference Include="..\CommentManagement.Infrastructure.Configuration\CommentManagement.Infrastructure.Configuration.csproj"/>
         <ProjectReference Include="..\DiscountManagement.Application.Contracts\DiscountManagement.Application.Contracts.csproj"/>
         <ProjectReference Include="..\DiscountManagement.Configuration\DiscountManagement.Configuration.csproj"/>
         <ProjectReference Include="..\InventoryManagement.Application\InventoryManagement.Application.csproj"/>
         <ProjectReference Include="..\InventoryManagement.Infrastructure.Configuration\InventoryManagement.Infrastructure.Configuration.csproj"/>
         <ProjectReference Include="..\InventoryManagement.Presentation.Api\InventoryManagement.Presentation.Api.csproj"/>
-        <ProjectReference Include="..\ShopManagement.Configuration\ShopManagement.Configuration.csproj"/>
+        <ProjectReference Include="..\ShopManagement.Application\ShopManagement.Application.csproj"/>
+        <ProjectReference Include="..\ShopManagement.Infrastructure.AccountAcl\ShopManagement.Infrastructure.AccountAcl.csproj"/>
+        <ProjectReference Include="..\ShopManagement.Infrastructure.InventoryAcl\ShopManagement.Infrastructure.InventoryAcl.csproj"/>
         <ProjectReference Include="..\ShopManagement.Presentation.Api\ShopManagement.Presentation.Api.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.3"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Nancy" Version="2.0.0"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4"/>
     </ItemGroup>
 
@@ -39,7 +44,82 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Areas\Administration\Pages\Discounts\"/>
+        <Reference Include="ShopManagement.Configuration">
+            <HintPath>bin\Debug\net10.0\ShopManagement.Configuration.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="Pages\AccessDenied.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Account.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Article.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\ArticleCategory.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Cart.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Checkout.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Error.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\PaymentResult.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Privacy.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Product.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\ProductCategory.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Search.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\Footer\Default.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\LatestArrivals\Default.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\LatestArticles\Default.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\Menu\Default.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\ProductCategoryWithProduct\Default.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\ProductCategory\Default.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\Slide\Default.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\_ValidationScriptsPartial.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\_ViewStart.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Accounts\Account\ChangePassword.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Accounts\Account\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Accounts\Account\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Accounts\Account\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Accounts\Role\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Accounts\Role\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Accounts\Role\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Blog\ArticleCategories\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Blog\ArticleCategories\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Blog\ArticleCategories\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Blog\Articles\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Blog\Articles\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Blog\Articles\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Comments\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Discounts\ColleagueDiscounts\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Discounts\ColleagueDiscounts\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Discounts\ColleagueDiscounts\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Discounts\CustomerDiscounts\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Discounts\CustomerDiscounts\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Discounts\CustomerDiscounts\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\Increase.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\OperationLog.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\Reduce.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shared\_AdminLayout.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shared\_Menu.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shared\_ValidationScriptsPartial.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Orders\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Orders\Items.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductCategories\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductCategories\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductCategories\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductPictures\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductPictures\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\ProductPictures\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Products\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Products\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Products\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Slides\Create.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Slides\Edit.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Shop\Slides\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\_ViewImports.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Administration\Pages\_ViewStart.cshtml"/>
     </ItemGroup>
 
 </Project>
