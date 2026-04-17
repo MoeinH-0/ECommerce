@@ -45,10 +45,6 @@ public class IndexModel : PageModel
     [NeedsPermission(ShopPermission.EditProductCategory)]
     public JsonResult OnPostEdit(EditProductCategory command)
     {
-        if (ModelState.IsValid)
-        {
-        }
-
         var result = _productCategoryApplication.Edit(command);
         return new JsonResult(result);
     }

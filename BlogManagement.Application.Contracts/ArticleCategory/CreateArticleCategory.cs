@@ -9,7 +9,7 @@ public class CreateArticleCategory
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
     public string Name { get; set; }
 
-    public IFormFile Picture { get; set; }
+    public IFormFile? Picture { get; set; }
 
     [Required(ErrorMessage = ValidationMessages.IsRequired)]
     public string PictureAlt { get; set; }

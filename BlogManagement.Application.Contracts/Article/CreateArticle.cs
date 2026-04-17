@@ -16,7 +16,7 @@ public class CreateArticle
 
     public string Description { get; set; }
 
-    public IFormFile Picture { get; set; }
+    public IFormFile? Picture { get; set; }
 
     [MaxLength(500, ErrorMessage = ValidationMessages.MaxLength)]
     [Required(ErrorMessage = ValidationMessages.IsRequired)]

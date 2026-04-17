@@ -39,7 +39,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
             .Select(x => new AccountViewModel
             {
                 Id = x.Id,
-                FullName = x.FullName
+                Fullname = x.FullName
             }).ToList();
     }
 
@@ -50,7 +50,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
             .Select(x => new AccountViewModel
             {
                 Id = x.Id,
-                FullName = x.FullName,
+                Fullname = x.FullName,
                 Mobile = x.Mobile,
                 Username = x.Username,
                 Role = x.Role.Name,
@@ -61,7 +61,7 @@ public class AccountRepository : RepositoryBase<long, Account>, IAccountReposito
 
         if (!string.IsNullOrWhiteSpace(searchModel.FullName))
             query = query.Where
-                (x => x.FullName.Contains(searchModel.FullName));
+                (x => x.Fullname.Contains(searchModel.FullName));
 
         if (!string.IsNullOrWhiteSpace(searchModel.Username))
             query = query.Where

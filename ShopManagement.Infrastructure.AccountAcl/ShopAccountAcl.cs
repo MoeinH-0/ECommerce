@@ -15,6 +15,6 @@ public class ShopAccountAcl : IShopAccountAcl
     public (string name, string mobile) GetAccountBy(long id)
     {
         var account = _accountApplication.GetAccountBy(id);
-        return (account.FullName, account.Mobile);
+        return (account.Fullname, account.Mobile);
     }
 }

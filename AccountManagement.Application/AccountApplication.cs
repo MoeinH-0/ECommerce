@@ -28,7 +28,7 @@ public class AccountApplication : IAccountApplication
         var account = _accountRepository.Get(id);
         return new AccountViewModel
         {
-            FullName = account.FullName,
+            Fullname = account.FullName,
             Mobile = account.Mobile
         };
     }

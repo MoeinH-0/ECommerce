@@ -10,7 +10,8 @@ public class ArticleCategory : EntityBase
         string canonicalAddress)
     {
         Name = name;
-        Picture = picture;
+        if (!string.IsNullOrWhiteSpace(picture))
+            Picture = picture;
         PictureAlt = pictureAlt;
         PictureTitle = pictureTitle;
         Description = description;

@@ -19,10 +19,9 @@ public class FileExtentionLimitationAttribute : ValidationAttribute, IClientMode
         context.Attributes.Add("data-val-fileExtentionLimit", ErrorMessage);
     }
 
-    public override bool IsValid(object value)
+    public override bool IsValid(object? value)
     {
-        var file = value as IFormFile;
-        if (file == null) return true;
+        if (value is not IFormFile file) return true;
         var fileExtention = Path.GetExtension(file.FileName);
         return _validExtentions.Contains(fileExtention);
     }

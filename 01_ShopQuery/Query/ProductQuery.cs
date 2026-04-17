@@ -202,8 +202,11 @@ public class ProductQuery : IProductQuery
         return products;
     }
 
-    public List<CartItem> CheckInventoryStatus(List<CartItem> cartItems)
+    public List<CartItem>? CheckInventoryStatus(List<CartItem>? cartItems)
     {
+        if (cartItems == null)
+            return cartItems;
+        
         var inventories = _inventoryContext.Inventory.ToList();
 
         foreach (var cartItem in cartItems)

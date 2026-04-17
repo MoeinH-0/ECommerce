@@ -11,7 +11,7 @@ public class FileUploader : IFileUploader
         _webHostEnvironment = webHostEnvironment;
     }
 
-    public string Upload(IFormFile file, string path)
+    public string Upload(IFormFile? file, string path)
     {
         if (file == null) return "";
 

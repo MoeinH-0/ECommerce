@@ -15,7 +15,8 @@ public class Product : EntityBase
         ShortDescription = shortDescription;
         Description = description;
         CategoryId = categoryId;
-        Picture = picture;
+        if (!string.IsNullOrWhiteSpace(picture))
+            Picture = picture;
         PictureAlt = pictureAlt;
         PictureTitle = pictureTitle;
         Keywords = keywords;
@@ -46,7 +47,7 @@ public class Product : EntityBase
         ShortDescription = shortDescription;
         Description = description;
         CategoryId = categoryId;
-        if (string.IsNullOrEmpty(picture))
+        if (!string.IsNullOrEmpty(picture))
             Picture = picture;
         PictureAlt = pictureAlt;
         PictureTitle = pictureTitle;

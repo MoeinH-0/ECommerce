@@ -108,11 +108,17 @@ pnpm-debug.log*
 #############################################
 # wwwroot handling (IMPORTANT)
 #############################################
-# Ignore all files inside any wwwroot folder
-**/wwwroot/*
 
-# Un-ignore the .gitkeep file so the empty folder is tracked
+# Ignore everything in any wwwroot folder
+**/wwwroot/**
+
+# But allow Theme/assets/js folder and its JS files
+!**/wwwroot/Theme/assets/js/
+!**/wwwroot/Theme/assets/js/*.js
+
 !**/wwwroot/.gitkeep
+
+
 
 
 #############################################
