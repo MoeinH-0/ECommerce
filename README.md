@@ -1,4 +1,4 @@
-# E-Commerce 🚀
+# Modular-Commerce 🚀
 
 A comprehensive and scalable e-commerce backend built with **.NET** and **C#**, utilizing a **Modular Monolith** architecture. This project is heavily focused on structural integrity, applying **Clean Architecture** principles and **CQRS** to ensure high maintainability and loose coupling between distinct business capabilities.
 
