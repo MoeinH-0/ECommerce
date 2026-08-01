@@ -6,7 +6,7 @@ A comprehensive and scalable e-commerce backend built with **.NET** and **C#**, 
 * **Language & Framework:** C#, ASP.NET Core
 * **Architecture:** Clean Architecture, Modular Monolith
 * **Patterns:** CQRS (Command Query Responsibility Segregation)
-* **Data Access & ORM:** Entity Framework Core (EF Core)
+* **Data Access & ORM:** Entity Framework Core (EF Core) with PostgreSQL
 * **Security:** Role-Based Authorization, Cookie Authentication
 
 ## 🏗️ System Architecture
