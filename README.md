@@ -1,35 +1,26 @@
-# Modular-Commerce 🚀
+# 🛒 Modular-Commerce
 
-A comprehensive and scalable e-commerce backend built with **.NET** and **C#**, utilizing a **Modular Monolith** architecture. This project is heavily focused on structural integrity, applying **Clean Architecture** principles and **CQRS** to ensure high maintainability and loose coupling between distinct business capabilities.
+## 📖 About This Project
+A fully functional e-commerce web application designed to implement advanced architectural patterns in .NET. The backend is built upon a **Modular Monolith** architecture combined with **Clean Architecture** principles, ensuring scalability, maintainability, and separation of concerns.
 
-## 🛠️ Tech Stack & Technologies
-* **Language & Framework:** C#, ASP.NET Core
-* **Architecture:** Clean Architecture, Modular Monolith
-* **Patterns:** CQRS (Command Query Responsibility Segregation)
-* **Data Access & ORM:** Entity Framework Core (EF Core) with PostgreSQL
-* **Security:** Role-Based Authorization, Cookie Authentication
+## 🚀 Technologies & Tools
+* **Language:** C#
+* **Framework:** ASP.NET Core
+* **ORM:** Entity Framework Core (EF Core)
+* **Database:** PostgreSQL
+* **UI & Auth:** Razor Pages, Cookie-Based Authentication, Role-Based Authorization
 
-## 🏗️ System Architecture
+## 🏗 Architecture & Key Concepts
 
-The solution is divided into autonomous business modules. Each module encapsulates its own Domain, Application, and Infrastructure layers, adhering to the dependency inversion principle.
+* **Modular Monolith & Clean Architecture:** The system is divided into distinct business modules (e.g., Shop, Inventory, Account). Each strictly follows Clean Architecture, keeping Domain and Application layers independent of infrastructure.
+* **Database Isolation:** To ensure loose coupling, each module has its own independent `DbContext` and configuration.
+* **Inter-Module Communication (ACL):** Modules communicate securely via an Anti-Corruption Layer (ACL) and Application Contracts, without directly referencing each other's databases.
+* **CQS (Command Query Separation):** Read and write operations are logically separated at the Application layer using dedicated class libraries, streamlining database interactions.
 
-### Core Modules
-
-| Module | Core Responsibility |
-| :--- | :--- |
-| **AccountManagement** | User identity, registration, authentication, and role management. |
-| **ShopManagement** | Core catalog handling (products, categories, brands, pictures). |
-| **InventoryManagement** | Stock control, inventory tracking, and warehouse operations. |
-| **DiscountManagement** | Pricing policies, discount definitions, and application. |
-| **BlogManagement** | Content management for the marketing and blogging layer. |
-| **CommentManagement** | Handling and moderation of user reviews and comments. |
-
-### Cross-Cutting & Infrastructure
-
-* **`0_Framework`**: Contains shared building blocks, utilities, and base classes used across all modules.
-* **`01_ShopQuery`**: Implements the Query side (read model) handling read operations efficiently as dictated by the CQRS pattern.
-* **`ServiceHost`**: The Composition Root and entry point of the application, responsible for Dependency Injection (DI) wiring and API hosting.
-
-## ⚙️ Module Inter-Communication
-
-To prevent tight coupling between distinct domains, the modules do not reference each other's persistence layers directly. Instead, they communicate using an **Access Control Layer (ACL)** approach (e.g., `AccountAcl`, `InventoryAcl`) and rely on shared contracts (`Application.Contracts`), ensuring that changes in one module's internal logic do not break the rest of the system.
+## 📦 Modules Overview
+* 👤 **AccountManagement:** User registration, authentication, and role management.
+* 🛍️ **ShopManagement:** Products, categories, brands, and product images.
+* 📦 **InventoryManagement:** Stock tracking and inventory operations.
+* 💰 **DiscountManagement:** Pricing strategies and discount codes.
+* 📝 **BlogManagement:** Articles and content management.
+* 💬 **CommentManagement:** User comments and feedback moderation.
