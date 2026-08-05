@@ -10,12 +10,12 @@ A fully functional e-commerce web application designed to implement advanced arc
 * **Database:** PostgreSQL
 * **UI & Auth:** Razor Pages, Cookie-Based Authentication, Role-Based Authorization
 
-## 🏗 Architecture & Key Concepts
+🏗 Architecture & Key Concepts
 
-* **Modular Monolith & Clean Architecture:** The system is divided into distinct business modules (e.g., Shop, Inventory, Account). Each strictly follows Clean Architecture, keeping Domain and Application layers independent of infrastructure.
-* **Database Isolation:** To ensure loose coupling, each module has its own independent `DbContext` and configuration.
-* **Inter-Module Communication (ACL):** Modules communicate securely via an Anti-Corruption Layer (ACL) and Application Contracts, without directly referencing each other's databases.
-* **CQS (Command Query Separation):** Read and write operations are logically separated at the Application layer using dedicated class libraries, streamlining database interactions.
+Modular Monolith & Clean Architecture: The system is divided into distinct business modules (e.g., Shop, Inventory, Account). Each strictly follows Clean Architecture, keeping Domain and Application layers independent of infrastructure.
+Modular DbContexts: To maintain logical boundaries and separation of concerns, each module manages its own dedicated DbContext.
+Inter-Module Communication: Modules interact and share data efficiently at the Application layer, ensuring a unified system state without complex distributed infrastructure.
+CQS (Command Query Separation): Read and write operations are logically separated at the Application layer using dedicated class libraries, streamlining database interactions.
 
 ## 📦 Modules Overview
 * 👤 **AccountManagement:** User registration, authentication, and role management.
