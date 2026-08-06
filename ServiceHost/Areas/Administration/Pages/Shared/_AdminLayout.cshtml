@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" href="images/favicon_1.ico">
 
-    <title>@ViewData["Title"] | shop Shop</title>
+    <title>@ViewData["Title"] | Shop</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
 
@@ -39,6 +39,16 @@
     <link href="~/AdminTheme/assets/css/style.css" rel="stylesheet" type="text/css"/>
     <script src="~/AdminTheme/assets/js/modernizr.min.js"></script>
 
+    <style>
+        .logo span {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 17px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.5px;
+            text-transform: capitalize !important;
+        }
+    </style>
+
 </head>
 
 <body class="fixed-left">
@@ -50,7 +60,7 @@
         <!-- LOGO -->
         <div class="topbar-left">
             <div class="text-center">
-                <a href="index.html" class="logo"><i class="md md-terrain"></i> <span> shop </span></a>
+                <a asp-area="" asp-page="/Index" class="logo"><i class="md md-terrain"></i> <span> Shop </span></a>
             </div>
         </div>
         <!-- Button mobile view to collapse sidebar menu -->
@@ -160,7 +170,7 @@
         </div> <!-- content -->
 
         <footer class="footer text-right">
-            2020 © موسسه آموزشی آتریا.
+            Moein Hosseini
         </footer>
 
     </div>

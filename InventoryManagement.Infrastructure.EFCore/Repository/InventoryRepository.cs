@@ -3,6 +3,7 @@ using _0_Framework.Infrastructure;
 using AccountManagement.Infrastructure.EFCore;
 using InventoryManagement.Application.Contracts.Inventory;
 using InventoryManagement.Domain.InventoryAgg;
+using Microsoft.EntityFrameworkCore;
 using ShopManagement.Infrastructure.EFCore;
 
 namespace InventoryManagement.Infrastructure.EFCore.Repository;
@@ -40,13 +41,15 @@ public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRe
     {
         var product = _shopContext.Products.Select(x => new { x.Id, x.Name }).ToList();
 
-        var query = _inventoryContext.Inventory.Select(x => new InventoryViewModel
+        var query = _inventoryContext.Inventory
+            .Include(x => x.Operations)
+            .Select(x => new InventoryViewModel
         {
             Id = x.Id,
             UnitPrice = x.UnitPrice,
             InStock = x.InStock,
             ProductId = x.ProductId,
-            CurrentCount = x.CalculateCurrentCount(),
+            CurrentCount = x.InStockCount,
             CreationDate = x.CreationDate.ToFarsi()
         });
 
@@ -58,7 +61,10 @@ public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRe
 
         var inventory = query.OrderByDescending(x => x.Id).ToList();
 
-        inventory.ForEach(item => { item.Product = product.FirstOrDefault(x => x.Id == item.ProductId)?.Name; });
+        inventory.ForEach(item =>
+        {
+            item.Product = product.FirstOrDefault(x => x.Id == item.ProductId)?.Name;
+        });
 
         return inventory;
     }

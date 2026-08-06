@@ -49,6 +49,13 @@ public class AuthHelper : IAuthHelper
             : 0;
     }
 
+    public bool HasAccessToAdminPanel()
+    {
+        var role = CurrentAccountRole();
+    
+        return role is Roles.Administrator or Roles.ContentUploader;
+    }
+
     public string CurrentAccountMobile()
     {
         return IsAuthenticated()

@@ -36,6 +36,9 @@ namespace InventoryManagement.Infrastructure.EFCore.Migrations
                     b.Property<bool>("InStock")
                         .HasColumnType("boolean");
 
+                    b.Property<long>("InStockCount")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
@@ -60,12 +63,18 @@ namespace InventoryManagement.Infrastructure.EFCore.Migrations
 
                             NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b1.Property<long>("Id"));
 
+                            b1.Property<long>("Count")
+                                .HasColumnType("bigint");
+
                             b1.Property<long>("CurrentCount")
                                 .HasColumnType("bigint");
 
                             b1.Property<string>("Description")
                                 .IsRequired()
                                 .HasColumnType("text");
+
+                            b1.Property<bool>("Operation")
+                                .HasColumnType("boolean");
 
                             b1.Property<DateTime>("OperationDate")
                                 .HasColumnType("timestamp with time zone");

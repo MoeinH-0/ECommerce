@@ -215,7 +215,7 @@ public class ProductQuery : IProductQuery
                 x.ProductId == cartItem.Id && x.InStock);
 
             if (inventory != null)
-                cartItem.IsInStock = cartItem.Count <= inventory.CalculateCurrentCount();
+                cartItem.IsInStock = cartItem.Count <= inventory.InStockCount;
         }
 
         return cartItems;

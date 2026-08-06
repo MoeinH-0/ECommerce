@@ -33,27 +33,6 @@ public class AccountApplication : IAccountApplication
         };
     }
 
-    public OperationResult Register(RegisterAccount command)
-    {
-        var operation = new OperationResult();
-
-        if (_accountRepository.Exists(x => x.Username == command.Username
-                                           || x.Mobile == command.Mobile))
-            return operation.Failed(ApplicationMessages.DuplicatedRecord);
-
-        var passwordHash = _passwordHasher.Hash(command.Password);
-        var path = "profilePhotos";
-        var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
-
-        var account = new Account(command.FullName, command.Username,
-            passwordHash, command.Mobile, command.RoleId, picturePath);
-
-        _accountRepository.Create(account);
-        _accountRepository.SaveChanges();
-
-        return operation.Succeeded();
-    }
-
     public OperationResult Edit(EditAccount command)
     {
         var operation = new OperationResult();
@@ -92,6 +71,37 @@ public class AccountApplication : IAccountApplication
         account.ChangePassword(passwordHash);
 
         _accountRepository.SaveChanges();
+
+        return operation.Succeeded();
+    }
+
+    public OperationResult Register(RegisterAccount command)
+    {
+        var operation = new OperationResult();
+
+        if (_accountRepository.Exists(x => x.Username == command.Username
+                                           || x.Mobile == command.Mobile))
+            return operation.Failed(ApplicationMessages.DuplicatedRecord);
+
+        var passwordHash = _passwordHasher.Hash(command.Password);
+        var path = "profilePhotos";
+        var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
+
+        var account = new Account(command.FullName, command.Username,
+            passwordHash, command.Mobile, command.RoleId, picturePath);
+
+        _accountRepository.Create(account);
+        _accountRepository.SaveChanges();
+        
+        var permissions = _roleRepository.Get(account.RoleId)!
+            .Permissions
+            .Select(x => x.Code)
+            .ToList();
+
+        var authViewModel = new AuthViewModel(account.Id, account.RoleId,
+            account.FullName, account.Username, account.Mobile, permissions);
+
+        _authHelper.Signin(authViewModel);
 
         return operation.Succeeded();
     }

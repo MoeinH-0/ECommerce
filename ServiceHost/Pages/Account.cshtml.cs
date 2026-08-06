@@ -13,22 +13,27 @@ public class AccountModel : PageModel
         _accountApplication = accountApplication;
     }
 
-    [TempData] public string? LoginMessage { get; set; }
+    public string? LoginMessage { get; set; }
+    public string? RegisterMessage { get; set; }
 
-    [TempData] public string? RegisterMessage { get; set; }
+    [BindProperty] 
+    public Login LoginCommand { get; set; }
+
+    [BindProperty] 
+    public RegisterAccount RegisterCommand { get; set; }
 
     public void OnGet()
     {
     }
 
-    public IActionResult OnPostLogin(Login command)
+    public IActionResult OnPostLogin()
     {
-        var result = _accountApplication.Login(command);
+        var result = _accountApplication.Login(LoginCommand);
         if (result.IsSucceeded)
             return RedirectToPage("/Index");
 
         LoginMessage = result.Message;
-        return RedirectToPage("/Account");
+        return Page();
     }
 
     public IActionResult OnGetLogout()
@@ -37,12 +42,13 @@ public class AccountModel : PageModel
         return RedirectToPage("/Index");
     }
 
-    public IActionResult OnPostRegister(RegisterAccount command)
+    public IActionResult OnPostRegister()
     {
-        var result = _accountApplication.Register(command);
+        var result = _accountApplication.Register(RegisterCommand);
         if (result.IsSucceeded)
-            return RedirectToPage("/Account");
+            return RedirectToPage("/Index");
+            
         RegisterMessage = result.Message;
-        return RedirectToPage("/Account");
+        return Page();
     }
 }

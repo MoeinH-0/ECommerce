@@ -1,6 +1,23 @@
 ﻿@using _0_Framework.Application
+@using _0_Framework.Infrastructure
 @model _01_ShopQuery.MenuModel
 @inject IAuthHelper AuthHelper
+
+<style>
+    .navigation-menu-wrapper nav > ul > li {
+        margin: 0 8px !important;
+    }
+    
+    .navigation-menu-wrapper nav > ul > li > a {
+        font-size: 14px !important;
+        padding: 10px 5px !important;
+    }
+    
+    .auth-link-custom {
+        font-weight: bold !important;
+        color: #d33 !important;
+    }
+</style>
 
 <div class="header-area header-sticky">
     <div class="container">
@@ -12,6 +29,7 @@
                             <img src="~/Theme/assets/img/logo.png" class="img-fluid" alt="">
                         </a>
                     </div>
+                    
                     <div class="navigation-menu-wrapper">
                         <nav>
                             <ul>
@@ -42,24 +60,33 @@
                                         }
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="contact.html">تماس با ما</a>
-                                </li>
+                                @* <li> *@
+                                @*     <a asp-page="/Contact">تماس با ما</a> *@
+                                @* </li> *@
+
                                 @if (AuthHelper.IsAuthenticated())
                                 {
+                                    @if (AuthHelper.HasAccessToAdminPanel())
+                                    {
+                                        <li>
+                                            
+                                            <a href="/Administration">پنل مدیریت</a>
+                                        </li>
+                                    }
                                     <li>
-                                        <a asp-page="/Account" asp-page-handler="Logout">خروج</a>
+                                        <a asp-page="/Account" asp-page-handler="Logout" class="auth-link-custom">خروج</a>
                                     </li>
                                 }
                                 else
                                 {
                                     <li>
-                                        <a asp-page="/Account">وورد / ثبت نام</a>
+                                        <a asp-page="/Account" class="auth-link-custom" style="color: #333 !important;">ورود / ثبت نام</a>
                                     </li>
                                 }
                             </ul>
                         </nav>
                     </div>
+                    
                     <div class="header-icon-wrapper">
                         <ul class="icon-list">
                             <li>
@@ -75,63 +102,10 @@
                                     </a>
                                     <div class="mini-cart" id="mini-cart">
                                         <div class="cart-items-wrapper ps-scroll" id="cart_items_wrapper">
-
                                         </div>
                                         <div class="cart-buttons">
                                             <a asp-page="/Cart">مشاهده سبد خرید</a>
                                         </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="header-settings-icon">
-                                    <a href="javascript:void(0)" class="header-settings-trigger"
-                                       id="header-settings-trigger">
-                                        <div class="setting-button">
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                    </a>
-
-                                    <div class="settings-menu-wrapper" id="settings-menu-wrapper">
-                                        <div class="single-settings-block">
-                                            <h4 class="title">پروفایل من </h4>
-                                            <ul>
-                                                <li>
-                                                    <a asp-page="/Account">ثبت نام</a>
-                                                </li>
-                                                <li>
-                                                    <a asp-page="/Account">ورود</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        @*<div class="single-settings-block">
-                                                <h4 class="title">CURRENCY: USD </h4>
-                                                <ul>
-                                                    <li>
-                                                        <a href="javascript:void(0)">€ Euro</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0)">$ US Dollar</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="single-settings-block">
-                                                <h4 class="title">LANGUAGE: EN-GB </h4>
-                                                <ul>
-                                                    <li>
-                                                        <a href="javascript:void(0)">
-                                                            <img src="~/Theme/assets/img/icons/en-gb.png" alt=""> English
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0)">
-                                                            <img src="~/Theme/assets/img/icons/de-de.png" alt=""> Germany
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>*@
                                     </div>
                                 </div>
                             </li>
@@ -143,7 +117,7 @@
                     <div class="row align-items-center">
                         <div class="col-6 col-md-6">
                             <div class="header-logo">
-                                <a href="index.html">
+                                <a asp-page="/Index">
                                     <img src="~/Theme/assets/img/logo.png" class="img-fluid" alt="">
                                 </a>
                             </div>
@@ -154,9 +128,9 @@
                                     <ul class="icon-list justify-content-end">
                                         <li>
                                             <div class="header-cart-icon">
-                                                <a href="cart.html">
+                                                <a asp-page="/Cart">
                                                     <i class="ion-bag"></i>
-                                                    <span class="counter">3</span>
+                                                    <span class="counter">0</span>
                                                 </a>
                                             </div>
                                         </li>
@@ -177,14 +151,12 @@
     </div>
 </div>
 
-
 <div class="offcanvas-mobile-menu" id="offcanvas-mobile-menu">
     <a href="javascript:void(0)" class="offcanvas-menu-close" id="offcanvas-menu-close-trigger">
         <i class="ion-android-close"></i>
     </a>
 
     <div class="offcanvas-wrapper">
-
         <div class="offcanvas-inner-content">
             <div class="offcanvas-mobile-search-area">
                 <form action="#">
@@ -196,55 +168,58 @@
             </div>
             <nav class="offcanvas-navigation">
                 <ul>
-                    <li class="">
+                    <li>
                         <a asp-page="/Index">صفحه اصلی</a>
                     </li>
                     <li class="menu-item-has-children">
                         <a href="#">محصولات</a>
                         <ul class="sub-menu">
-                            <li>
-                                <a href="blog-left-sidebar.html">دکوری</a>
-                            </li>
-                            <li>
-                                <a href="blog-right-sidebar.html">نگه دارنده</a>
-                            </li>
+                            @foreach (var category in Model.ProductCategories)
+                            {
+                                <li>
+                                    <a asp-page="./ProductCategory"
+                                       asp-route-id="@category.Slug">@category.Name</a>
+                                </li>
+                            }
                         </ul>
                     </li>
 
                     <li class="menu-item-has-children">
                         <a href="#">مقالات</a>
                         <ul class="sub-menu">
-                            <li>
-                                <a href="blog-left-sidebar.html">گروه مقاله1</a>
-                            </li>
-                            <li>
-                                <a href="blog-right-sidebar.html">گروه مقاله2</a>
-                            </li>
+                            @foreach (var category in Model.ArticleCategories)
+                            {
+                                <li>
+                                    <a asp-page="./ArticleCategory"
+                                       asp-route-id="@category.Slug">@category.Name</a>
+                                </li>
+                            }
                         </ul>
                     </li>
-                    <li class="">
+                    <li>
                         <a asp-page="/Contact">تماس با ما</a>
                     </li>
+                    
+                    @if (AuthHelper.IsAuthenticated())
+                    {
+                        @if (AuthHelper.HasAccessToAdminPanel())
+                        {
+                            <li>
+                                <a href="/Administration">پنل مدیریت</a>
+                            </li>
+                        }
+                        <li>
+                            <a asp-page="/Account" asp-page-handler="Logout">خروج</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-page="/Account">ورود / ثبت نام</a>
+                        </li>
+                    }
                 </ul>
             </nav>
-
-            <div class="offcanvas-settings">
-                <nav class="offcanvas-navigation">
-                    <ul>
-                        <li class="menu-item-has-children">
-                            <a href="#">پروفایل من </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="login-register.html">ثبت نام</a>
-                                </li>
-                                <li>
-                                    <a href="login-register.html">ورود</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
 
             <div class="offcanvas-widget-area">
                 <div class="off-canvas-contact-widget">
@@ -253,36 +228,16 @@
                             <li>
                                 <i class="ion-android-phone-portrait"></i>
                                 <a href="tel://12452456012">
-                                    (1245) 2456
-                                    012
+                                    (1245) 2456 012
                                 </a>
                             </li>
                             <li>
-                                <i class="ion-android-mail"></i> <a
-                                    href="mailto:info@yourdomain.com">info@atriya.com</a>
+                                <i class="ion-android-mail"></i> 
+                                <a href="mailto:info@yourdomain.com">info@atriya.com</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <!--Off Canvas Widget Social Start-->
-                <div class="off-canvas-widget-social">
-                    <a href="#" title="Facebook">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a href="#" title="Twitter">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a href="#" title="LinkedIn">
-                        <i class="fa fa-linkedin"></i>
-                    </a>
-                    <a href="#" title="Youtube">
-                        <i class="fa fa-youtube-play"></i>
-                    </a>
-                    <a href="#" title="Vimeo">
-                        <i class="fa fa-vimeo-square"></i>
-                    </a>
-                </div>
-                <!--Off Canvas Widget Social End-->
             </div>
         </div>
     </div>

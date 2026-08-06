@@ -9,5 +9,7 @@ public interface IAuthHelper
     AuthViewModel CurrentAccountInfo();
     List<int> GetPermissions();
     long CurrentAccountId();
+    bool HasAccessToAdminPanel();
+
     string CurrentAccountMobile();
 }

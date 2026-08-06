@@ -9,12 +9,14 @@ public class Inventory : EntityBase
         ProductId = productId;
         UnitPrice = unitPrice;
         InStock = false;
+        InStockCount = 0;
     }
 
     public long ProductId { get; private set; }
     public double UnitPrice { get; private set; }
     public bool InStock { get; private set; }
     public List<InventoryOperation> Operations { get; private set; }
+    public long InStockCount { get; private set; }
 
     public void Edit(long productId, double unitPrice)
     {
@@ -22,29 +24,26 @@ public class Inventory : EntityBase
         UnitPrice = unitPrice;
     }
 
-    public long CalculateCurrentCount()
-    {
-        return Operations.Last().CurrentCount;
-    }
-
     public void Increase(long count, long operatorId, string description)
     {
         var operation = new InventoryOperation(true, count, operatorId,
-            CalculateCurrentCount(), description, 0, Id);
+            InStockCount, description, 0, Id);
         Operations.Add(operation);
+        InStockCount += count;
         UpdateInStock();
     }
 
     public void Reduce(long count, long operatorId, string description, long orderId)
     {
         var operation = new InventoryOperation(false, count, operatorId,
-            CalculateCurrentCount(), description, orderId, Id);
+            InStockCount, description, orderId, Id);
         Operations.Add(operation);
+        InStockCount -= count;
         UpdateInStock();
     }
 
     private void UpdateInStock()
     {
-        InStock = CalculateCurrentCount() > 0;
+        InStock = InStockCount > 0;
     }
 }

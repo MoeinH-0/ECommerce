@@ -14,7 +14,7 @@ public class Account : EntityBase
         Mobile = mobile;
         RoleId = roleId;
         if (roleId == 0)
-            RoleId = 1;
+            RoleId = 2;
 
         if (string.IsNullOrWhiteSpace(profilePhoto))
             ProfilePhoto = profilePhoto;

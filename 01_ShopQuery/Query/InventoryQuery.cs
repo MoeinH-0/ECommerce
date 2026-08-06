@@ -26,7 +26,7 @@ public class InventoryQuery : IInventoryQuery
         var inventory = _inventoryContext.Inventory
             .FirstOrDefault(x => x.ProductId == command.ProductId);
 
-        if (inventory == null || inventory.CalculateCurrentCount() >= command.Count)
+        if (inventory == null || inventory.InStockCount >= command.Count)
             return new StockStatus
             {
                 IsStock = false,
