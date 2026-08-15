@@ -128,6 +128,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogManagement.Presentation
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopManagement.Infrastructure.AccountAcl", "ShopManagement.Infrastructure.AccountAcl\ShopManagement.Infrastructure.AccountAcl.csproj", "{8CC7AE71-2F29-4AEB-B8D2-B36EA1643916}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopManagement.Infrastructure.Configuration", "ShopManagement.Infrastructure.Configuration\ShopManagement.Infrastructure.Configuration.csproj", "{6DB2141E-B83B-46B6-8108-2C89CBF52951}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +191,7 @@ Global
 		{88D72D7C-7E94-4D48-9321-23F2E084E950} = {FEC2DFE5-2782-412D-8BB0-096B86712CE6}
 		{6B6AB7BE-0E7A-43B4-AEAB-20A34B518AF1} = {88D72D7C-7E94-4D48-9321-23F2E084E950}
 		{8CC7AE71-2F29-4AEB-B8D2-B36EA1643916} = {F3DF99FF-7692-4684-B94F-1654F886C2FD}
+		{6DB2141E-B83B-46B6-8108-2C89CBF52951} = {F3DF99FF-7692-4684-B94F-1654F886C2FD}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B4E86E33-FA54-48BE-927D-932ACB259029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -339,5 +342,9 @@ Global
 		{8CC7AE71-2F29-4AEB-B8D2-B36EA1643916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CC7AE71-2F29-4AEB-B8D2-B36EA1643916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC7AE71-2F29-4AEB-B8D2-B36EA1643916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DB2141E-B83B-46B6-8108-2C89CBF52951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DB2141E-B83B-46B6-8108-2C89CBF52951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DB2141E-B83B-46B6-8108-2C89CBF52951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DB2141E-B83B-46B6-8108-2C89CBF52951}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

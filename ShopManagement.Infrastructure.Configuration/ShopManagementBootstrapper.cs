@@ -12,7 +12,6 @@ using ShopManagement.Application.Contracts.Product;
 using ShopManagement.Application.Contracts.ProductCategory;
 using ShopManagement.Application.Contracts.ProductPicture;
 using ShopManagement.Application.Contracts.Slide;
-using ShopManagement.Configuration.Permissions;
 using ShopManagement.Domain.OrderAgg;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg;
@@ -20,11 +19,12 @@ using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Domain.Services;
 using ShopManagement.Domain.SlideAgg;
 using ShopManagement.Infrastructure.AccountShopAcl;
+using ShopManagement.Infrastructure.Configuration.Permissions;
 using ShopManagement.Infrastructure.EFCore;
 using ShopManagement.Infrastructure.EFCore.Repository;
 using ShopManagement.Infrastructure.InventoryAcl;
 
-namespace ShopManagement.Configuration;
+namespace ShopManagement.Infrastructure.Configuration;
 
 public static class ShopManagementBootstrapper
 {
@@ -47,6 +47,8 @@ public static class ShopManagementBootstrapper
 
         services.AddSingleton<ICartService, CartService>();
         services.AddTransient<IShopInventoryAcl, ShopInventoryAcl>();
+        services.AddTransient<IShopAccountAcl, ShopAccountAcl>();
+
 
         services.AddTransient<ISlideQuery, SlideQuery>();
         services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();

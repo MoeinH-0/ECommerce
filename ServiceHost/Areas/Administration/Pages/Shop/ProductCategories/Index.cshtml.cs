@@ -2,7 +2,8 @@ using _0_Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManagement.Application.Contracts.ProductCategory;
-using ShopManagement.Configuration.Permissions;
+using ShopManagement.Infrastructure.Configuration.Permissions;
+using ShopPermission = ShopManagement.Infrastructure.Configuration.Permissions.ShopPermission;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.ProductCategories;
 

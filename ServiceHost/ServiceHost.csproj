@@ -18,6 +18,7 @@
         <ProjectReference Include="..\InventoryManagement.Presentation.Api\InventoryManagement.Presentation.Api.csproj"/>
         <ProjectReference Include="..\ShopManagement.Application\ShopManagement.Application.csproj"/>
         <ProjectReference Include="..\ShopManagement.Infrastructure.AccountAcl\ShopManagement.Infrastructure.AccountAcl.csproj"/>
+        <ProjectReference Include="..\ShopManagement.Infrastructure.Configuration\ShopManagement.Infrastructure.Configuration.csproj" />
         <ProjectReference Include="..\ShopManagement.Infrastructure.InventoryAcl\ShopManagement.Infrastructure.InventoryAcl.csproj"/>
         <ProjectReference Include="..\ShopManagement.Presentation.Api\ShopManagement.Presentation.Api.csproj"/>
     </ItemGroup>
@@ -41,12 +42,6 @@
         <Content Include="wwwroot\.idea\projectSettingsUpdater.xml"/>
         <Content Include="wwwroot\.idea\vcs.xml"/>
         <Content Include="wwwroot\.idea\workspace.xml"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Reference Include="ShopManagement.Configuration">
-            <HintPath>bin\Debug\net10.0\ShopManagement.Configuration.dll</HintPath>
-        </Reference>
     </ItemGroup>
 
     <ItemGroup>

@@ -13,8 +13,9 @@ using InventoryManagement.Infrastructure.Configuration;
 using InventoryManagement.Presentation.Api;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ServiceHost;
-using ShopManagement.Configuration;
 using ShopManagement.Presentation.Api;
+using Microsoft.AspNetCore.HttpOverrides;
+using ShopManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,12 +77,6 @@ builder.Services.AddAuthorizationBuilder()
     .AddPolicy("Account", policy =>
         policy.RequireRole(new List<string> { Roles.Administrator }));
 
-builder.Services.AddCors(option =>
-    option.AddPolicy("MyPolicy", configure =>
-        configure
-            .WithOrigins("https://localhost:5001")
-            .AllowAnyHeader()
-            .AllowAnyMethod()));
 
 builder.Services.AddRazorPages()
     .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
@@ -96,16 +91,35 @@ builder.Services.AddRazorPages()
     .AddApplicationPart(typeof(InventoryController).Assembly)
     .AddNewtonsoftJson();
 
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownIPNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevCorsPolicy", policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
+app.UseForwardedHeaders();
+
+if (app.Environment.IsDevelopment())
+    app.UseCors("DevCorsPolicy"); 
+else
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
-app.UseAuthentication();
 
 app.UseHttpsRedirection();
 
@@ -115,13 +129,12 @@ app.UseCookiePolicy();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
 app.MapRazorPages().WithStaticAssets();
 
 app.MapDefaultControllerRoute();
-
-app.UseCors("MyPolicy");
 
 app.Run();
