@@ -1,0 +1,49 @@
+# IDEs & Workspaces
+.idea/
+.vs/
+.vscode/
+**/*.suo
+**/*.user
+**/*.userosscache
+**/*.sln.docstates
+**/*.*proj.user
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# .NET Build Outputs
+**/bin/
+**/obj/
+**/out/
+**/publish/
+**/artifacts/
+**/*.pdb
+**/*.cache
+
+# Logs and Databases (Local only)
+**/*.log
+**/*.db
+**/*.db-shm
+**/*.db-wal
+
+# Configuration and Secrets
+**/.env
+**/.env.*
+!**/.env.example
+**/secrets.json
+**/appsettings.Local.json
+ServiceHost/appsettings.Development.json
+
+# Docker and OS files
+.dockerignore
+Dockerfile
+docker-compose*.yml
+docker-compose*.yaml
+**/.DS_Store
+**/Thumbs.db
+
+# Project Specific: Ignore local uploads but keep the folder structure
+ServiceHost/wwwroot/ProductPictures/**
+!ServiceHost/wwwroot/ProductPictures/.keep

@@ -45,7 +45,7 @@ public static class ShopManagementBootstrapper
         services.AddTransient<IOrderApplication, OrderApplication>();
         services.AddTransient<IOrderRepository, OrderRepository>();
 
-        services.AddSingleton<ICartService, CartService>();
+        services.AddScoped<ICartService, CartService>();
         services.AddTransient<IShopInventoryAcl, ShopInventoryAcl>();
         services.AddTransient<IShopAccountAcl, ShopAccountAcl>();
 
