@@ -6,6 +6,6 @@ public class CommentQueryModel
     public string Name { get; set; }
     public string Message { get; set; }
     public string CreationDate { get; set; }
-    public long ParentId { get; set; }
+    public long? ParentId { get; set; }
     public string? parentName { get; set; }
 }
