@@ -1,2 +1,3 @@
-﻿**/wwwroot/lib/** linguist-vendored
-**/wwwroot/AdminTheme/** linguist-vendored
+ServiceHost/wwwroot/lib/** linguist-vendored
+ServiceHost/wwwroot/AdminTheme/** linguist-vendored
+ServiceHost/wwwroot/Theme/assets/css/** linguist-vendored
