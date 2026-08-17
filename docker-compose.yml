@@ -28,7 +28,7 @@
     ports:
       - "8080:8080"
     volumes:
-      ./ServiceHost/wwwroot/ProductPictures:/app/wwwroot/ProductPictures
+      - ./ServiceHost/wwwroot/ProductPictures:/app/wwwroot/ProductPictures
 
     depends_on:
       ecommerce_db:
