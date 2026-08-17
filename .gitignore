@@ -106,19 +106,11 @@ yarn-debug.log*
 pnpm-debug.log*
 
 #############################################
-# wwwroot handling (IMPORTANT)
+# wwwroot handling
 #############################################
 
-# Ignore everything in any wwwroot folder
-**/wwwroot/**
-
-# But allow Theme/assets/js folder and its JS files
-!**/wwwroot/Theme/assets/js/
-!**/wwwroot/Theme/assets/js/*.js
-
-!**/wwwroot/.gitkeep
-
-
+**/wwwroot/ProductPictures/
+**/wwwroot/.idea/
 
 
 #############################################
