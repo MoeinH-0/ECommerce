@@ -35,16 +35,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="wwwroot\.idea\.gitignore"/>
-        <Content Include="wwwroot\.idea\copilot.data.migration.agent.xml"/>
-        <Content Include="wwwroot\.idea\encodings.xml"/>
-        <Content Include="wwwroot\.idea\indexLayout.xml"/>
-        <Content Include="wwwroot\.idea\projectSettingsUpdater.xml"/>
-        <Content Include="wwwroot\.idea\vcs.xml"/>
-        <Content Include="wwwroot\.idea\workspace.xml"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <_ContentIncludedByDefault Remove="Pages\AccessDenied.cshtml"/>
         <_ContentIncludedByDefault Remove="Pages\Account.cshtml"/>
         <_ContentIncludedByDefault Remove="Pages\Article.cshtml"/>

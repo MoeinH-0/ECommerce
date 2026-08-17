@@ -14,6 +14,7 @@
 .gitattributes
 
 # .NET Build Outputs
+**/.idea/
 **/bin/
 **/obj/
 **/out/
