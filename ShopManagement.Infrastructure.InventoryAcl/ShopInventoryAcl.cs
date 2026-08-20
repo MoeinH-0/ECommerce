@@ -16,7 +16,7 @@ public class ShopInventoryAcl : IShopInventoryAcl
     public bool ReduceFromInventory(List<OrderItem> items)
     {
         var list = items.Select(item =>
-            new ReduceInventory(item.Id, item.Count,
+            new ReduceInventory(item.ProductId, item.Count,
                 "خرید مشتری", item.OrderId)).ToList();
 
         return _inventoryApplication.Reduce(list).IsSucceeded;

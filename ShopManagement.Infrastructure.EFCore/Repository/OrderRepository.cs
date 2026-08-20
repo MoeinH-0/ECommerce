@@ -59,7 +59,7 @@ public class OrderRepository : RepositoryBase<long, Order>, IOrderRepository
         orders.ForEach(order =>
         {
             order.AccountFullName = accounts.FirstOrDefault
-                (a => a.Id == order.Id)!.FullName;
+                (a => a.Id == order.AccountId)!.FullName;
 
             order.PaymentMethod = PaymentMethod.GetBy(order.PaymentMethodId).Name;
         });

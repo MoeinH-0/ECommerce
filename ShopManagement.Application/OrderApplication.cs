@@ -64,9 +64,9 @@ public class OrderApplication : IOrderApplication
 
         var (name, mobile) = _accountAcl.GetAccountBy(order.AccountId);
 
-        _smsService.Send(mobile,
-            $"{name} گرامی سفارش شما با شماره پیگیری" +
-            $" {issueTrackingNo} با موفقیت پرداخت شد و ارسال خواهد شد.");
+        // _smsService.Send(mobile,
+            // $"{name} گرامی سفارش شما با شماره پیگیری" +
+            // $" {issueTrackingNo} با موفقیت پرداخت شد و ارسال خواهد شد.");
 
         return issueTrackingNo;
     }

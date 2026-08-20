@@ -1,7 +1,10 @@
-﻿namespace _0_Framework.Application.ZarinPal;
+﻿using System.Text.Json.Serialization;
+
+namespace _0_Framework.Application.ZarinPal;
 
 public class PaymentResponse
 {
-    public int Status { get; set; }
-    public string Authority { get; set; }
+    [JsonPropertyName("code")]
+    public int Code{ get; set; }
+    [JsonPropertyName("authority")] public string Authority { get; set; }
 }

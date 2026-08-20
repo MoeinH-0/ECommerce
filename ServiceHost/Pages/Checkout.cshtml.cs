@@ -81,7 +81,7 @@ public class CheckoutModel : PageModel
                 orderAmount.ToString(CultureInfo.InvariantCulture));
 
         var result = new PaymentResult();
-        if (status == "OK" && verificationResponse.Status >= 100)
+        if (status == "OK" && verificationResponse.Code >= 100)
         {
             var issueTrackingNo = _orderApplication.PaymentSucceeded(oId, verificationResponse.RefID);
             Response.Cookies.Delete("cart-items");

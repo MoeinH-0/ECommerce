@@ -1,7 +1,11 @@
-﻿namespace _0_Framework.Application.ZarinPal;
+﻿using System.Text.Json.Serialization;
+
+namespace _0_Framework.Application.ZarinPal;
 
 public class VerificationResponse
 {
-    public int Status { get; set; }
+    [JsonPropertyName("code")]
+    public int Code { get; set; }
+    [JsonPropertyName("ref_id")]
     public long RefID { get; set; }
 }

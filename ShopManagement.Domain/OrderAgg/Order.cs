@@ -30,7 +30,7 @@ public class Order : EntityBase
     public double PayAmount { get; private set; }
     public bool IsPaid { get; private set; }
     public bool IsCanceled { get; private set; }
-    public string IssueTrackingNo { get; private set; }
+    public string IssueTrackingNo { get; private set; } = "";
     public long RefId { get; private set; }
     public List<OrderItem> Items { get; }
 

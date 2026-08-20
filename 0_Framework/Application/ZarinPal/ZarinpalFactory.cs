@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace _0_Framework.Application.ZarinPal;
@@ -14,7 +15,7 @@ public class ZarinPalFactory : IZarinPalFactory
         _configuration = configuration;
         Prefix = _configuration.GetSection("payment")["method"]!;
         MerchantId = _configuration.GetSection("payment")["merchant"]!;
-        _baseUrl = $"https://{Prefix}.zarinpal.com/pg/rest/WebGate/";
+        _baseUrl = $"https://{Prefix}.zarinpal.com/pg/v4/payment";
     }
 
     private string MerchantId { get; }
@@ -26,31 +27,35 @@ public class ZarinPalFactory : IZarinPalFactory
     {
         amount = amount.Replace(",", "");
         var finalAmount = int.Parse(amount);
-        var siteUrl = _configuration.GetSection("payment")["siteUrl"];
+        var siteUrl = _configuration.GetSection("payment")["url"];
 
         var client = new RestClient(_baseUrl);
-        //var request = new RestRequest(Method.POST);
-        var request = new RestRequest("PaymentRequest.json", Method.Post);
+        // var request = new RestRequest(Method.POST);
+        var request = new RestRequest("/request.json", Method.Post);
         request.AddHeader("Content-Type", "application/json");
         var body = new PaymentRequest
         {
             Mobile = mobile,
             CallbackURL = $"{siteUrl}/Checkout?handler=CallBack&oId={orderId}",
+            // CallbackURL = $"{siteUrl}",
             Description = description,
             Email = email,
-            Amount = finalAmount,
+            Amount = finalAmount * 10,
             MerchantID = MerchantId
         };
 
         request.AddJsonBody(body);
         var response = client.Execute(request);
-        return JsonConvert.DeserializeObject<PaymentResponse>(response.Content);
+        var json = JObject.Parse(response.Content);
+        return json["data"]?.Type == JTokenType.Object
+            ? json["data"].ToObject<PaymentResponse>()
+            : null;
     }
 
     public VerificationResponse CreateVerificationRequest(string authority, string amount)
     {
         var client = new RestClient(_baseUrl);
-        var request = new RestRequest("PaymentVerification.json", Method.Post);
+        var request = new RestRequest("/verify.json", Method.Post);
         request.AddHeader("Content-Type", "application/json");
 
         amount = amount.Replace(",", "");
@@ -58,12 +63,15 @@ public class ZarinPalFactory : IZarinPalFactory
 
         request.AddJsonBody(new VerificationRequest
         {
-            Amount = finalAmount,
+            Amount = finalAmount * 10,
             MerchantID = MerchantId,
             Authority = authority
         });
 
         var response = client.Execute(request);
-        return JsonConvert.DeserializeObject<VerificationResponse>(response.Content);
+        var json = JObject.Parse(response.Content);
+        return json["data"]?.Type == JTokenType.Object
+            ? json["data"].ToObject<VerificationResponse>()
+            : null;
     }
 }
