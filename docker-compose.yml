@@ -29,11 +29,11 @@
       - "8080:8080"
     volumes:
       - ./ServiceHost/wwwroot/ProductPictures:/app/wwwroot/ProductPictures
-
     depends_on:
       ecommerce_db:
         condition: service_healthy
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__ShopDatabase=Host=ecommerce_db;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
     networks:
       - ecommerce_network

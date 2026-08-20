@@ -33,6 +33,9 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionStrings__ShopDatabase=Host=ecommerce_db;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+      - Payment__method=${PAYMENT_METHOD}
+      - Payment__merchant=${ZARINPAL_MERCHANT}
+      - Payment__url=${PAYMENT_URL}
     networks:
       - ecommerce_network
       - shared_network
